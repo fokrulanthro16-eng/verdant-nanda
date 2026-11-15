@@ -543,11 +543,13 @@ body {
   padding: 24px;
   opacity: 0;
   transition: opacity 0.25s ease;
+  pointer-events: none;
 }
 
 .spatial-modal-backdrop.is-open {
   display: flex;
   opacity: 1;
+  pointer-events: auto;
 }
 
 .spatial-modal-dialog {

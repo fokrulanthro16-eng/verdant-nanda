@@ -236,7 +236,7 @@
                   <span>$195</span><span class="cents">.00</span> <span style="font-size: 11px; color: #64748b;">/ night</span>
                 </div>
               </div>
-              <a href="http://localhost:8081" data-partner-node="pineridge" target="_blank" class="spatial-dock-btn" style="text-decoration: none; padding: 6px 12px; font-size: 11px;">
+              <a href="/partners/pineridge-stays/" data-partner-node="pineridge" target="_blank" class="spatial-dock-btn" style="text-decoration: none; padding: 6px 12px; font-size: 11px;">
                 Open Node ➔
               </a>
             </div>
@@ -290,7 +290,7 @@
                   <span>$85</span><span class="cents" style="color: #06b6d4;">.00</span> <span style="font-size: 11px; color: #64748b;">/ person</span>
                 </div>
               </div>
-              <a href="http://localhost:8082" data-partner-node="emeraldfjord" target="_blank" class="spatial-dock-btn" style="text-decoration: none; padding: 6px 12px; font-size: 11px;">
+              <a href="/partners/emeraldfjord-tours/" data-partner-node="emeraldfjord" target="_blank" class="spatial-dock-btn" style="text-decoration: none; padding: 6px 12px; font-size: 11px;">
                 Open Node ➔
               </a>
             </div>
@@ -480,6 +480,9 @@
     import { App } from "./js/app.js";
     import { ByokManager, PROVIDER_PRESETS } from "./js/byok-manager.js";
 
+    // Dynamic Origin Resolution helper
+    const isSingleDomain = (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") || (!window.location.port || (window.location.port !== "8080" && window.location.port !== "8081" && window.location.port !== "8082"));
+
     // Clean Modal Wiring (Opening & Closing)
     const openModal = (id) => {
       const modal = document.getElementById(id);
@@ -498,6 +501,14 @@
     document.querySelectorAll("[data-close]").forEach(el => {
       el.addEventListener("click", () => {
         closeModal(el.getAttribute("data-close"));
+      });
+    });
+
+    document.querySelectorAll(".spatial-modal-backdrop").forEach(backdrop => {
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) {
+          backdrop.classList.remove("is-open");
+        }
       });
     });
 
@@ -573,7 +584,31 @@
 
     // NANDA Inspector Tab Loading
     const inspectorViewer = document.getElementById("inspect-viewer");
-    const loadInspectTab = async (url) => {
+    const pineridgeManifest = isSingleDomain ? "/partners/pineridge-stays/agent-manifest.json" : "http://localhost:8081/agent-manifest.json";
+    const fjordManifest = isSingleDomain ? "/partners/emeraldfjord-tours/agent-manifest.json" : "http://localhost:8082/agent-manifest.json";
+
+    const inspectTabBtns = [
+      { id: "inspect-tab-index", url: "/nanda/nanda-index.json" },
+      { id: "inspect-tab-hub", url: "/agent-manifest.json" },
+      { id: "inspect-tab-pineridge", url: pineridgeManifest },
+      { id: "inspect-tab-fjord", url: fjordManifest }
+    ];
+
+    const loadInspectTab = async (activeTabId, url) => {
+      inspectTabBtns.forEach(t => {
+        const btn = document.getElementById(t.id);
+        if (btn) {
+          if (t.id === activeTabId) {
+            btn.style.borderColor = "#10b981";
+            btn.style.background = "rgba(16,185,129,0.2)";
+            btn.style.color = "#a7f3d0";
+          } else {
+            btn.style.borderColor = "rgba(52,211,153,0.35)";
+            btn.style.background = "rgba(6,16,12,0.85)";
+            btn.style.color = "#cbd5e1";
+          }
+        }
+      });
       try {
         const res = await fetch(url);
         const data = await res.json();
@@ -583,15 +618,11 @@
       }
     };
 
-    const isSingleDomain = (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") || !window.location.port;
-    const pineridgeManifest = isSingleDomain ? "/partners/pineridge-stays/agent-manifest.json" : "http://localhost:8081/agent-manifest.json";
-    const fjordManifest = isSingleDomain ? "/partners/emeraldfjord-tours/agent-manifest.json" : "http://localhost:8082/agent-manifest.json";
-
-    document.getElementById("inspect-tab-index")?.addEventListener("click", () => loadInspectTab("./nanda/nanda-index.json"));
-    document.getElementById("inspect-tab-hub")?.addEventListener("click", () => loadInspectTab("./agent-manifest.json"));
-    document.getElementById("inspect-tab-pineridge")?.addEventListener("click", () => loadInspectTab(pineridgeManifest));
-    document.getElementById("inspect-tab-fjord")?.addEventListener("click", () => loadInspectTab(fjordManifest));
-    loadInspectTab("./nanda/nanda-index.json");
+    document.getElementById("inspect-tab-index")?.addEventListener("click", () => loadInspectTab("inspect-tab-index", "/nanda/nanda-index.json"));
+    document.getElementById("inspect-tab-hub")?.addEventListener("click", () => loadInspectTab("inspect-tab-hub", "/agent-manifest.json"));
+    document.getElementById("inspect-tab-pineridge")?.addEventListener("click", () => loadInspectTab("inspect-tab-pineridge", pineridgeManifest));
+    document.getElementById("inspect-tab-fjord")?.addEventListener("click", () => loadInspectTab("inspect-tab-fjord", fjordManifest));
+    loadInspectTab("inspect-tab-index", "/nanda/nanda-index.json");
 
     // BYOK & AI Gateway Manager
     const providerSelect = document.getElementById("byok-provider-select");
@@ -723,7 +754,6 @@
     });
 
     // Dynamic Origin Resolution: Resolve Partner Links on Single Domain vs Local Ports
-    const isSingleDomain = (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") || !window.location.port;
     document.querySelectorAll("[data-partner-node]").forEach(el => {
       const node = el.getAttribute("data-partner-node");
       if (isSingleDomain) {

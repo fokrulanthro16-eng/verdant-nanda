@@ -27,7 +27,7 @@ export class HubApp {
     try {
       const isBrowser = typeof window !== "undefined";
       const indexPath = isBrowser 
-        ? "../nanda/nanda-index.json" 
+        ? "/nanda/nanda-index.json" 
         : new URL("../../nanda/nanda-index.json", import.meta.url);
       this.trustRegistry = await TrustRegistry.load(indexPath);
     } catch (e) {
@@ -53,7 +53,7 @@ export class HubApp {
     if (!this.trustRegistry) {
       const isBrowser = typeof window !== "undefined";
       const indexPath = isBrowser 
-        ? "../nanda/nanda-index.json" 
+        ? "/nanda/nanda-index.json" 
         : new URL("../../nanda/nanda-index.json", import.meta.url);
       this.trustRegistry = await TrustRegistry.load(indexPath);
     }
@@ -164,7 +164,7 @@ export class HubApp {
     }
 
     // Step 2: NANDA Node Discovery
-    const isSingleOrigin = typeof window !== "undefined" && (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1" || !window.location.port);
+    const isSingleOrigin = typeof window !== "undefined" && ((window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") || (!window.location.port || (window.location.port !== "8080" && window.location.port !== "8081" && window.location.port !== "8082")));
     const baseOrigin = typeof window !== "undefined" ? window.location.origin : "http://127.0.0.1:8080";
     const pineridgeUrl = isSingleOrigin ? `${baseOrigin}/partners/pineridge-stays/` : "http://localhost:8081/pineridge_stays";
     const fjordUrl = isSingleOrigin ? `${baseOrigin}/partners/emeraldfjord-tours/` : "http://localhost:8082/emeraldfjord_tours";

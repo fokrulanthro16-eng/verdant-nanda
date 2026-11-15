@@ -38,6 +38,21 @@ export class TrustRegistry {
     if (node.origin) {
       this.nodes.set(node.origin, node);
     }
+    // Also support single-origin partner resolution in browser
+    if (typeof window !== "undefined" && window.location) {
+      const isSingleOrigin = (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") || (!window.location.port || (window.location.port !== "8080" && window.location.port !== "8081" && window.location.port !== "8082"));
+      if (isSingleOrigin) {
+        if (node.id === "node-pineridge-02") {
+          this.nodes.set(`${window.location.origin}/partners/pineridge-stays`, node);
+          this.nodes.set(`${window.location.origin}/partners/pineridge-stays/`, node);
+          this.nodes.set(`/partners/pineridge-stays/`, node);
+        } else if (node.id === "node-emeraldfjord-03") {
+          this.nodes.set(`${window.location.origin}/partners/emeraldfjord-tours`, node);
+          this.nodes.set(`${window.location.origin}/partners/emeraldfjord-tours/`, node);
+          this.nodes.set(`/partners/emeraldfjord-tours/`, node);
+        }
+      }
+    }
   }
 
   findNode(identifier) {
