@@ -9,6 +9,7 @@
     "verify": "node scripts/verify-ecosystem.mjs",
     "audit:security": "node scripts/security-audit.mjs",
     "audit:leak": "node scripts/audit-zero-leak.mjs",
+    "package:submission": "node scripts/package-submission.mjs",
     "capture:screenshots": "node scripts/capture-screenshots.mjs",
     "test": "node --test hub/tests/*.test.mjs partners/pineridge-stays/tests/*.test.mjs partners/emeraldfjord-tours/tests/*.test.mjs"
   },

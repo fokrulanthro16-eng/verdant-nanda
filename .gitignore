@@ -23,6 +23,7 @@ desktop.ini
 *.webm
 *.mp3
 *.wav
+*.zip
 build-demo/
 demo-assets/
 
