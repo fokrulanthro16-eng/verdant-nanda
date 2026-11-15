@@ -542,7 +542,8 @@
 
       // 2. Run real cross-site negotiation engine
       const intent = dealInput.value;
-      App.page.runNegotiationSimulation(intent).then(() => {
+      const budgetVal = Number(budgetSlider?.value) || null;
+      App.page.runNegotiationSimulation(intent, budgetVal).then(() => {
         if (hudPhase) {
           hudPhase.textContent = "AAOSA: Follow Up · Deal Held";
           hudPhase.style.color = "#a7f3d0";

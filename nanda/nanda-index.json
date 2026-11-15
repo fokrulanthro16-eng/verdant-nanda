@@ -17,8 +17,8 @@
       "public_key_jwk": {
         "kty": "EC",
         "crv": "P-256",
-        "x": "W8P6c5HqH1F6_uXQdZ2Ue_eW9kL7jXp0gY1aB2cD3eE",
-        "y": "K9L0m1N2o3P4q5R6s7T8u9V0w1X2y3Z4a5B6c7D8eF0"
+        "x": "30-HmVS_xvD1Ns-t1ZVR14xaqRmWWsDEMv0w14Gid2w",
+        "y": "m4bJAs0Jrcia8Xw6BPHQOSPshqW47pSPUBlkzruONj0"
       },
       "capabilities": [
         "cross_site_negotiation",
@@ -40,8 +40,8 @@
       "public_key_jwk": {
         "kty": "EC",
         "crv": "P-256",
-        "x": "7kF9mQ2rT4vX6zB8dF0hJ2lN4pP6rT8vX0zB2dF4hJ6",
-        "y": "1aC3eG5iK7mO9qS1uW3yA5cE7gI9kM1oQ3sU5wY7aC9"
+        "x": "7mCsWxZcOUXFs_OXXNaNAGzzQituK7mwtC_QeTfEH74",
+        "y": "7H7D528pwEpunB6cUseDEl-5WZTP4r81HVOlvFZ5t9c"
       },
       "capabilities": [
         "website_get_cabin_state",
@@ -63,8 +63,8 @@
       "public_key_jwk": {
         "kty": "EC",
         "crv": "P-256",
-        "x": "4mP8sU2wZ6cD0gH4kL8pT2vX6zB0dF4hJ8lN2pP6rT0",
-        "y": "8bE2hK6nQ0tW4zC8fJ2pT6vY0cB4dF8hL2rT6vX0zB4"
+        "x": "99jL2wI3amA0P1jeoFGDE5Ygig_LuPATixq7K-LtkjQ",
+        "y": "kcaTJFpLNtwoBxGHTnSeI4MX4GeNIhEaqJY_AQS5tI0"
       },
       "capabilities": [
         "website_get_expedition_state",

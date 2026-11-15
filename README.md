@@ -3,7 +3,7 @@
 [![Open Agentic Web Challenge](https://img.shields.io/badge/Challenge-Open%20Agentic%20Web-10b981?style=for-the-badge&logo=target)](https://github.com/cognizant-ai-labs/agentic-web)
 [![Specification Compliance](https://img.shields.io/badge/Spec%20v0.2-100%25%20Compliant-34d399?style=for-the-badge&logo=checkmarx)](https://github.com/cognizant-ai-labs/agentic-web/blob/main/docs/worldwide_agentic_web_mvp_spec.md)
 [![MIT NANDA Registry](https://img.shields.io/badge/MIT%20NANDA-Registry%20v1%20Compliant-06b6d4?style=for-the-badge&logo=mit)](./nanda/nanda-index.json)
-[![Unit Tests](https://img.shields.io/badge/Tests-16%2F16%20Passing%20(100%25)-brightgreen?style=for-the-badge&logo=vitest)](./hub/tests/run-all-tests.js)
+[![Unit Tests](https://img.shields.io/badge/Tests-21%2F21%20Passing%20(100%25)-brightgreen?style=for-the-badge&logo=vitest)](./hub/tests/hub.test.mjs)
 [![Dual AI Engines](https://img.shields.io/badge/Engines-Mozilla%20Otari%20%7C%20Nebius-8b5cf6?style=for-the-badge&logo=openai)](./api/gateway.js)
 [![Security](https://img.shields.io/badge/Security-Zero--Leak%20Serverless%20Proxy-10b981?style=for-the-badge&logo=vault)](./SECURITY.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](./LICENSE)
@@ -31,7 +31,7 @@ Watch our high-definition executive demonstration video with full neural narrati
 | **Discovery** | Proprietary search engines, ad-gated listings, and opaque aggregators | Decentralized **MIT NANDA Index** with machine-readable manifests & public keys |
 | **Interoperability** | Fragmented human forms, disjointed shopping carts, brittle scrapers | **Spec v0.2 Protocol** with standard HOCON / `.network.json` agent representations |
 | **Cross-Site Negotiation** | Fixed non-negotiable prices, manual phone/email quote requests | Autonomous **AAOSA multi-vendor concessions** converging under budget constraints |
-| **Trust & Identity** | Centralized session cookies, vulnerable to impersonation | **WebCrypto ECDSA-P256** signatures verifying origin, quotes, and receipts |
+| **Trust & Authority** | Client-side private key trust illusion or centralized cookies | **Server-Side Authority KMS P-256 Signing** with browser JWK verification & Anti-Replay Ledger |
 | **Merchant Onboarding** | Expensive custom API development taking months | **1-Line Drop-in SDK** compiling live HTML DOM trees into agent tools on the fly |
 | **Spatial Interface** | Static 2D grids, stock photos, and distracting banner ads | **Living 3D WebGL Constellation** with real-time visual negotiation telemetry |
 
@@ -39,7 +39,7 @@ Watch our high-definition executive demonstration video with full neural narrati
 
 ## 🏛️ System Architecture & Protocols
 
-VerdantNANDA connects three independent web nodes, an enterprise serverless gateway, and a client-side compiler into a cooperative, zero-trust network.
+VerdantNANDA connects three independent web nodes, an enterprise serverless gateway & KMS authority, and a client-side compiler into a cooperative, zero-trust network.
 
 ### 1. Three-Node Mesh Topology
 
@@ -59,14 +59,14 @@ graph TB
     end
 
     subgraph "Infrastructure & Compilers"
-        Gateway["Serverless AI Gateway (api/gateway.js)<br/>• Zero-Leak Key Isolation<br/>• 20 req/hr Sliding Window Rate Limit<br/>• Mozilla Otari & Nebius Token Factory"]
+        Gateway["Serverless AI Gateway & KMS (api/gateway.js)<br/>• Server-Side P-256 Authority Custody<br/>• Anti-Replay Nonce & Settlement Ledger<br/>• Rate-Limited Mozilla Otari & Nebius Proxy"]
         SDK["1-Line DOM Compiler (sdk/verdant-agentify.js)<br/>• In-Browser AST DOM Scanner<br/>• Real-Time Schema Synthesizer"]
     end
 
     Hub -->|"1. Discover Nodes & Keys"| NANDA
     Hub -->|"2. Parallel RFQ & Negotiation"| PineRidge
     Hub -->|"2. Parallel RFQ & Negotiation"| EmeraldFjord
-    Hub -->|"3. Zero-Leak Inference"| Gateway
+    Hub -->|"3. Server KMS & Inference"| Gateway
     SDK -.->|"Compiles DOM into Tools"| PineRidge
     SDK -.->|"Compiles DOM into Tools"| EmeraldFjord
 ```
@@ -83,34 +83,33 @@ sequenceDiagram
     participant NANDA as MIT NANDA Registry
     participant PineRidge as PineRidge Stays (Node 2)
     participant EmeraldFjord as EmeraldFjord Tours (Node 3)
+    participant KMS as Server KMS & Replay Ledger (api/gateway)
 
-    Guest->>Hub: "Book 2-night cabin + private kayak for 2 under $420 total"
+    Guest->>Hub: "Book 2-night A-frame cabin with terrace BBQ + private kayak tour for 2 under $420 total"
     Hub->>NANDA: Fetch verified nodes & ECDSA public keys
     NANDA-->>Hub: Return manifest descriptors & JWKs
 
-    Note over Hub,EmeraldFjord: Round 0: Catalog Rack Rates ($380 + $225 = $605 > $420 Budget)
+    Note over Hub,EmeraldFjord: Round 0: Catalog Rack Rates ($435.00 + $170.00 = $605.00 > $420.00 Budget)
     par Request Quotes
-        Hub->>PineRidge: RFQ: 2 nights cabin (Rack: $380)
-        Hub->>EmeraldFjord: RFQ: 2 guests kayak tour (Rack: $225)
+        Hub->>PineRidge: RFQ: 2 nights A-Frame + BBQ Kit (Rack: $435.00)
+        Hub->>EmeraldFjord: RFQ: 2 guests kayak tour (Rack: $170.00)
     end
 
-    Note over Hub,EmeraldFjord: Round 1: Multi-Night & Off-Peak Concessions
-    PineRidge-->>Hub: Counter-Offer: $315 (ECDSA Signed)
-    EmeraldFjord-->>Hub: Counter-Offer: $195 (ECDSA Signed)
+    Note over Hub,EmeraldFjord: Round 1: Multi-Night & Duo Concessions
+    PineRidge-->>Hub: Counter-Offer: $355.00 (KMS P-256 Signed + Nonce)
+    EmeraldFjord-->>Hub: Counter-Offer: $150.00 (KMS P-256 Signed + Nonce)
 
     Note over Hub,EmeraldFjord: Round 2: Cross-Supplier Alliance Synergy
     Hub->>PineRidge: Propose bundle co-commitment
     Hub->>EmeraldFjord: Propose bundle co-commitment
-    PineRidge-->>Hub: Counter-Offer: $275 (ECDSA Signed)
-    EmeraldFjord-->>Hub: Counter-Offer: $170 (ECDSA Signed)
+    PineRidge-->>Hub: Counter-Offer: $305.00 (KMS P-256 Signed)
+    EmeraldFjord-->>Hub: Counter-Offer: $140.00 (KMS P-256 Signed)
 
-    Note over Hub,EmeraldFjord: Round 3: Final Equilibrium Lock-In ($260 + $158 = $418 <= $420)
-    Hub->>PineRidge: Execute website_hold_cabin_reservation ($260)
-    PineRidge-->>Hub: Return Signed Hold Receipt
-    Hub->>EmeraldFjord: Execute website_reserve_expedition ($158)
-    EmeraldFjord-->>Hub: Return Signed Hold Receipt
-
-    Hub->>Guest: Present Cryptographic Settlement Receipt ($418, $187 Saved)
+    Note over Hub,EmeraldFjord: Round 3: Final Equilibrium Lock-In ($285.00 + $133.00 = $418.00 <= $420.00)
+    Hub->>KMS: POST /api/gateway?action=lock-bundle (nonce, issuedAt, quotes)
+    KMS->>KMS: Check Anti-Replay Ledger & Verify Nonce (TTL 5 min)
+    KMS-->>Hub: Return 200 OK: Signed Receipt (VN-XXXXXX)
+    Hub->>Guest: Present Cryptographic Settlement Receipt ($418.00, $187.00 Saved)
 ```
 
 ---
@@ -130,7 +129,7 @@ stateDiagram-v2
     state Mode1_SponsoredSandbox {
         [*] --> ServerlessGateway
         ServerlessGateway --> RateLimitCheck : /api/gateway
-        RateLimitCheck --> ForwardToProvider : Within 20 req/hr
+        RateLimitCheck --> ForwardToProvider : Within 30 req/hr
         RateLimitCheck --> Return429 : Limit Exceeded
         ForwardToProvider --> MozillaOtari : Provider = Otari
         ForwardToProvider --> NebiusTokenFactory : Provider = Nebius
@@ -156,7 +155,7 @@ All showcase screenshots are captured at full-bleed 1080p (`1920×1080`) with We
 | Showcase Screenshot | Architectural Highlight & Telemetry |
 | :--- | :--- |
 | ![3D Spatial Mesh Hero](./screenshots/01_3d_spatial_mesh_hero.png) | **1. Living 3D Spatial Agentic Web Hero (`#030906`)**<br/>• Real-time Three.js bioluminescent emerald particle constellation.<br/>• Live telemetry pill displaying `3 MESH NODES ONLINE` and `ECDSA-P256 VERIFIED`.<br/>• Zero stock photos—100% custom SVG procedural wireframes. |
-| ![Live AAOSA Negotiation](./screenshots/02_live_aaosa_negotiation.png) | **2. Autonomous AAOSA Cross-Site Negotiation Stream**<br/>• Parallel multi-round counter-offers between PineRidge and EmeraldFjord.<br/>• Real-time concession convergence from rack sum \$605 down to \$418.<br/>• Interactive dynamic negotiation beam connecting nodes across the spatial canvas. |
+| ![Live AAOSA Negotiation](./screenshots/02_live_aaosa_negotiation.png) | **2. Autonomous AAOSA Cross-Site Negotiation Stream**<br/>• Parallel multi-round counter-offers between PineRidge and EmeraldFjord.<br/>• Real-time concession convergence from rack sum \$605.00 down to \$418.00.<br/>• Interactive dynamic negotiation beam connecting nodes across the spatial canvas. |
 | ![Cryptographic Receipt Confirmed](./screenshots/03_cryptographic_receipt_confirmed.png) | **3. Cryptographic Settlement Receipt & Surplus Telemetry**<br/>• Settled bundle contract totaling **\$418.00** against a strict **\$420.00** ceiling.<br/>• **\$187.00 consumer surplus savings** (30.91% price reduction).<br/>• WebCrypto SHA-256 attested receipt hash with immutable confirmation timestamp. |
 | ![NANDA Trust Inspector](./screenshots/04_nanda_trust_inspector.png) | **4. MIT NANDA Discovery & Cryptographic Trust Inspector**<br/>• Visual registry explorer inspecting verified node endpoints.<br/>• Live cryptographic envelope inspection showing `ECDSA-P256` public JWK keys.<br/>• Strict validation status: `100% SPEC v0.2 VERIFIED`. |
 | ![Agentify SDK Compiler](./screenshots/05_agentify_sdk_compiler.png) | **5. 1-Line Drop-In SDK & Dynamic DOM Compiler Studio**<br/>• Real-time syntax-highlighted code generator for standard HTML pages.<br/>• Dynamic AST scanner translating `data-agent-*` attributes into tools.<br/>• Interactive floating studio modal with one-click export for developers. |
@@ -169,14 +168,39 @@ All showcase screenshots are captured at full-bleed 1080p (`1920×1080`) with We
 In multi-agent ecommerce transactions, unconstrained negotiation often leads to deadlock. VerdantNANDA implements a mathematically bounded monotonic concession model:
 
 - **Target Guest Budget:** $B_{\text{target}} = \$420.00$
-- **Initial Catalog Rack Sum:** $P_{1,\text{rack}} (\$380.00) + P_{2,\text{rack}} (\$225.00) = \$605.00$ (Budget Deficit: $+\$185.00$)
+- **Initial Catalog Rack Sum:** $P_{1,\text{rack}}\ (\$435.00) + P_{2,\text{rack}}\ (\$170.00) = \$605.00$ (Budget Deficit: $+\$185.00$)
+  - PineRidge Eco-Stays: Cedar Canopy A-Frame ($2\text{ nights} \times \$195.00/\text{night} = \$390.00$) + Panoramic Terrace BBQ Kit ($\$45.00$) = $\$435.00$
+  - EmeraldFjord Expeditions: Midnight Sun Sea Kayaking ($2\text{ participants} \times \$85.00/\text{person} = \$170.00$)
 - **PineRidge Concession Curve:** $P_1(t) = P_{1,\text{rack}} - (P_{1,\text{rack}} - R_1) \cdot (t / T)^{0.85} - \gamma_{12}$
 - **EmeraldFjord Concession Curve:** $P_2(t) = P_{2,\text{rack}} - (P_{2,\text{rack}} - R_2) \cdot (t / T)^{0.90} - \gamma_{21}$
-- **Equilibrium Settlement:** $P_1^* = \$260.00$ (PineRidge) and $P_2^* = \$158.00$ (EmeraldFjord)
-- **Settlement Total:** $P_{\text{total}} = \$418.00 \le \$420.00$
+- **Equilibrium Settlement:** $P_1^* = \$285.00$ (PineRidge) and $P_2^* = \$133.00$ (EmeraldFjord)
+- **Settlement Total:** $P_{\text{total}} = P_1^* + P_2^* = \$285.00 + \$133.00 = \$418.00 \le \$420.00$
 - **Consumer Surplus:** $\$187.00$ saved (**$30.91\%$** discount)
 
 For the complete mathematical proof and utility functions, see [ARCHITECTURE.md](./ARCHITECTURE.md).
+
+---
+
+## 🔐 Server-Side KMS Authority & Anti-Replay Nonce Ledger
+
+To eliminate the "Client-Side Private Key Trust Illusion," VerdantNANDA implements genuine server-side cryptographic key management:
+
+- **Server-Side Key Custody (`api/gateway.js`):** Authority ECDSA P-256 keypairs for `node-hub-01`, `node-pineridge-02`, and `node-emeraldfjord-03` are held in server memory. Private keys are never serialized into responses or exposed to browser clients.
+- **In-Browser Public JWK Verification:** The browser client fetches partner public keys via `/api/gateway?action=public-keys` or `nanda-index.json`, then verifies counter-offers and receipts with native `window.crypto.subtle.verify`.
+- **Anti-Replay Nonce Ledger:** Every signed counter-offer includes a 16-byte hex nonce and a 5-minute TTL timestamp. Upon confirmation (`action: "lock-bundle"`), the nonce is locked in the server ledger. Any replayed settlement attempt is rejected with **HTTP 409 Conflict** (`REPLAY_ATTACK_BLOCKED: Cryptographic nonce already consumed`).
+- **Telemetry Tag:** `SERVER-KMS-P256-SIGNED • NONCE-REPLAY-GUARD-LOCKED`.
+
+---
+
+## 🧭 Dynamic Open-Ended Custom Intent Parser
+
+In addition to the canonical benchmark prompt, VerdantNANDA dynamically interprets open-ended traveler requests and slider budgets:
+
+- **Parameter Extraction:** Extracts `nights` (1–14), `guests` (1–12), `budget`, lodging tier, and expedition tier from free-form natural language.
+- **Multi-Tier Inventory Mapping:**
+  - **Lodging:** Cedar Canopy A-Frame, Obsidian Ridge Villa, Mosswood Sanctuary.
+  - **Expeditions:** Midnight Sun Sea Kayaking, Helicopter Glacier Trek, Ancient Old-Growth Canopy & Waterfall Trek, Zero-Emission Electric Shuttle Transit.
+- **Reserve Floor Protection:** If the requested budget is below the merchants' combined operating reserve floor ($R_{\text{total}}$), the system emits an **`INFEASIBLE_BUDGET_FLOOR`** counter-offer bounded at the merchant floor rather than terminating negotiations.
 
 ---
 
@@ -264,8 +288,10 @@ NEBIUS_API_KEY=your_nebius_key_here
 #### 3. Run Automated Conformance Tests
 ```bash
 npm test
+node check_partner.mjs
+npm run audit:leak
 ```
-*Result: All 16 unit and protocol integration tests pass (100% green).*
+*Result: All 21 unit tests, partner checks, and zero-leak security audits pass (100% green).*
 
 #### 4. Launch Local Mesh
 ```bash
@@ -290,15 +316,17 @@ VerdantNANDA provides seamless single-domain Vercel deployment:
 | `/partners/pineridge-stays/*` | `partners/pineridge-stays/*` | PineRidge Stays Supplier Node |
 | `/partners/emeraldfjord-tours/*` | `partners/emeraldfjord-tours/*` | EmeraldFjord Expeditions Supplier Node |
 | `/nanda/*` | `nanda/*` | MIT NANDA Decentralized Registry Index |
-| `/api/gateway` | `api/gateway.js` | Zero-Leak Serverless Proxy (Otari + Nebius) |
+| `/api/gateway` | `api/gateway.js` | Zero-Leak Serverless Proxy & KMS Authority |
 
 ---
 
 ## 🔒 Security Audit & Compliance
 
 - **0 Hardcoded Credentials:** Confirmed by automated repository security audit.
+- **Server KMS Key Custody:** True server-side P-256 authority signing with private key containment.
+- **Anti-Replay Ledger:** Rejects replayed settlement nonces with HTTP 409 Conflict.
 - **Production Guard:** `/api/gateway/dev-key` returns `403 Forbidden` in production environments.
-- **Rate-Limited:** Enforces 20 requests per hour per IP on serverless proxy endpoints.
+- **Rate-Limited:** Enforces 30 requests per hour per IP on serverless proxy endpoints.
 - **Spec v0.2 Compliant:** Tab-scoped browser runtime execution with explicit consent confirmation modals.
 
 For complete details, see [SECURITY.md](./SECURITY.md).

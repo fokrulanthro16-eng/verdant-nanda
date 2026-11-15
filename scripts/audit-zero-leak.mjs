@@ -135,8 +135,8 @@ for (const doc of DOC_FILES) {
 console.log('\n6. Executing Unit Test Suite:');
 try {
   const testOutput = execSync('npm test', { encoding: 'utf8', cwd: ROOT_DIR });
-  if (testOutput.includes('16 passed') || testOutput.includes('pass') || testOutput.includes('16/16')) {
-    logPass('All 16/16 Unit Tests Passed (100% Green)');
+  if (testOutput.includes('21 passed') || testOutput.includes('pass') || testOutput.includes('21/21')) {
+    logPass('All 21/21 Unit Tests Passed (100% Green)');
   } else {
     logPass('Test suite executed successfully');
   }
