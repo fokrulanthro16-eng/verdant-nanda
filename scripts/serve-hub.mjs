@@ -71,7 +71,9 @@ const server = http.createServer(async (req, res) => {
     const projectRoot = path.resolve(__dirname, "..");
     let target;
 
-    if (decoded.startsWith("/partners/") || decoded.startsWith("/sdk/") || decoded.startsWith("/nanda/")) {
+    if (decoded === "/.network.json") {
+      target = path.resolve(root, "concierge_negotiator.network.json");
+    } else if (decoded.startsWith("/partners/") || decoded.startsWith("/sdk/") || decoded.startsWith("/nanda/")) {
       target = path.resolve(projectRoot, `.${path.sep}${decoded}`);
     } else {
       target = path.resolve(root, `.${path.sep}${decoded}`);

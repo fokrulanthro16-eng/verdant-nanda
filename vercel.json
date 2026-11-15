@@ -1,9 +1,8 @@
 {
-  "version": 2,
-  "cleanUrls": true,
+  "cleanUrls": false,
   "rewrites": [
     {
-      "source": "/api/gateway/:match*",
+      "source": "/api/gateway/:path*",
       "destination": "/api/gateway"
     },
     {
@@ -11,44 +10,124 @@
       "destination": "/api/gateway"
     },
     {
-      "source": "/sdk/:match*",
-      "destination": "/sdk/:match*"
-    },
-    {
       "source": "/sdk",
       "destination": "/sdk/index.html"
     },
     {
-      "source": "/partners/pineridge-stays/:match*",
-      "destination": "/partners/pineridge-stays/:match*"
+      "source": "/sdk/",
+      "destination": "/sdk/index.html"
+    },
+    {
+      "source": "/sdk/:path*",
+      "destination": "/sdk/:path*"
     },
     {
       "source": "/partners/pineridge-stays",
       "destination": "/partners/pineridge-stays/index.html"
     },
     {
-      "source": "/partners/emeraldfjord-tours/:match*",
-      "destination": "/partners/emeraldfjord-tours/:match*"
+      "source": "/partners/pineridge-stays/",
+      "destination": "/partners/pineridge-stays/index.html"
+    },
+    {
+      "source": "/partners/pineridge-stays/:path*",
+      "destination": "/partners/pineridge-stays/:path*"
     },
     {
       "source": "/partners/emeraldfjord-tours",
       "destination": "/partners/emeraldfjord-tours/index.html"
     },
     {
-      "source": "/nanda/:match*",
-      "destination": "/nanda/:match*"
+      "source": "/partners/emeraldfjord-tours/",
+      "destination": "/partners/emeraldfjord-tours/index.html"
+    },
+    {
+      "source": "/partners/emeraldfjord-tours/:path*",
+      "destination": "/partners/emeraldfjord-tours/:path*"
     },
     {
       "source": "/nanda",
       "destination": "/nanda/nanda-index.json"
     },
     {
-      "source": "/(styles\\.css|spatial-3d\\.js|site\\.js|site-actions\\.js|agent-manifest\\.json|links\\.json|agent-mcp\\.json|concierge_negotiator\\.hocon|concierge_negotiator\\.network\\.json)",
-      "destination": "/hub/$1"
+      "source": "/nanda/",
+      "destination": "/nanda/nanda-index.json"
     },
     {
-      "source": "/(js|bridge|runtime|tests|\\.well-known)/:match*",
-      "destination": "/hub/$1/:match*"
+      "source": "/nanda/:path*",
+      "destination": "/nanda/:path*"
+    },
+    {
+      "source": "/styles.css",
+      "destination": "/hub/styles.css"
+    },
+    {
+      "source": "/site.js",
+      "destination": "/hub/site.js"
+    },
+    {
+      "source": "/site-actions.js",
+      "destination": "/hub/site-actions.js"
+    },
+    {
+      "source": "/agent-manifest.json",
+      "destination": "/hub/agent-manifest.json"
+    },
+    {
+      "source": "/agent-mcp.json",
+      "destination": "/hub/agent-mcp.json"
+    },
+    {
+      "source": "/links.json",
+      "destination": "/hub/links.json"
+    },
+    {
+      "source": "/concierge_negotiator.hocon",
+      "destination": "/hub/concierge_negotiator.hocon"
+    },
+    {
+      "source": "/concierge_negotiator.network.json",
+      "destination": "/hub/concierge_negotiator.network.json"
+    },
+    {
+      "source": "/.network.json",
+      "destination": "/hub/concierge_negotiator.network.json"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/hub/favicon.ico"
+    },
+    {
+      "source": "/js/:path*",
+      "destination": "/hub/js/:path*"
+    },
+    {
+      "source": "/runtime/:path*",
+      "destination": "/hub/runtime/:path*"
+    },
+    {
+      "source": "/bridge/:path*",
+      "destination": "/hub/bridge/:path*"
+    },
+    {
+      "source": "/tests/:path*",
+      "destination": "/hub/tests/:path*"
+    },
+    {
+      "source": "/.well-known/:path*",
+      "destination": "/hub/.well-known/:path*"
+    },
+    {
+      "source": "/hub",
+      "destination": "/hub/index.html"
+    },
+    {
+      "source": "/hub/",
+      "destination": "/hub/index.html"
+    },
+    {
+      "source": "/hub/:path*",
+      "destination": "/hub/:path*"
     },
     {
       "source": "/",

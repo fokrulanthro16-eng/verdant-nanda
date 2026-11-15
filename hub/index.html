@@ -364,7 +364,7 @@
           &lt;script src="./sdk/verdant-agentify.js" data-site-name="My Eco Lodge" data-network="my_lodge" data-nanda-register="true"&gt;&lt;/script&gt;
         </div>
         <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 8px;">
-          <a href="./sdk/index.html" class="spatial-dock-btn btn-pulse" style="text-decoration: none;">
+          <a href="/sdk/" class="spatial-dock-btn btn-pulse" style="text-decoration: none;">
             Open Interactive SDK Playground ➔
           </a>
         </div>
@@ -583,10 +583,14 @@
       }
     };
 
+    const isSingleDomain = (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") || !window.location.port;
+    const pineridgeManifest = isSingleDomain ? "/partners/pineridge-stays/agent-manifest.json" : "http://localhost:8081/agent-manifest.json";
+    const fjordManifest = isSingleDomain ? "/partners/emeraldfjord-tours/agent-manifest.json" : "http://localhost:8082/agent-manifest.json";
+
     document.getElementById("inspect-tab-index")?.addEventListener("click", () => loadInspectTab("./nanda/nanda-index.json"));
     document.getElementById("inspect-tab-hub")?.addEventListener("click", () => loadInspectTab("./agent-manifest.json"));
-    document.getElementById("inspect-tab-pineridge")?.addEventListener("click", () => loadInspectTab("http://localhost:8081/agent-manifest.json"));
-    document.getElementById("inspect-tab-fjord")?.addEventListener("click", () => loadInspectTab("http://localhost:8082/agent-manifest.json"));
+    document.getElementById("inspect-tab-pineridge")?.addEventListener("click", () => loadInspectTab(pineridgeManifest));
+    document.getElementById("inspect-tab-fjord")?.addEventListener("click", () => loadInspectTab(fjordManifest));
     loadInspectTab("./nanda/nanda-index.json");
 
     // BYOK & AI Gateway Manager
