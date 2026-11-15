@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "pineridge_stays"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}

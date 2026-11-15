@@ -1,0 +1,82 @@
+{
+  "brand": "EmeraldFjord Expeditions Guide",
+  "networks": [
+    {
+      "name": "emeraldfjord_tours",
+      "front_man": "fjord_guide",
+      "hocon": "./emeraldfjord_tours.network.json",
+      "description": "Guided sea kayaking, ancient canopy treks, and electric shuttle transfers through Emerald Fjord.",
+      "tags": [
+        "agentified-website",
+        "sea-kayaking",
+        "expeditions"
+      ],
+      "sample_queries": [
+        "What sea kayak tours are available and is gear included?",
+        "What would 2 tickets for the Midnight Sun Sea Kayaking cost with provisions?",
+        "Quote a kayak tour for 2 guests with the PineRidge stay alliance discount.",
+        "Reserve 2 spots for Chloe Lindqvist on the 18:30 kayak departure."
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Local agents and page-local actions only."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "emeraldfjord_tours",
+    "front_man": "fjord_guide",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#14b8a6"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "emeraldfjord_tours",
+        "front_man": "fjord_guide",
+        "aliases": [
+          "emeraldfjord_tours",
+          "fjord_guide"
+        ],
+        "url": "emeraldfjord_tours"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_expedition_state",
+      "check_tour_availability",
+      "negotiate_tour_quote",
+      "fill_expedition_form",
+      "reserve_expedition",
+      "cancel_expedition"
+    ]
+  }
+}

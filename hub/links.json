@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "networks": {
+    "concierge_negotiator": {
+      "pineridge_stays": "http://localhost:8081/pineridge_stays",
+      "emeraldfjord_tours": "http://localhost:8082/emeraldfjord_tours"
+    }
+  }
+}

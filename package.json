@@ -1,0 +1,29 @@
+{
+  "name": "verdant-nanda",
+  "version": "1.0.0",
+  "description": "Autonomous Cross-Site Eco-Luxury Stay, Expedition & Concierge Deal Negotiation Network",
+  "type": "module",
+  "scripts": {
+    "build:all": "node scripts/build-all.mjs",
+    "serve:all": "node scripts/serve-all.mjs",
+    "verify": "node scripts/verify-ecosystem.mjs",
+    "audit:security": "node scripts/security-audit.mjs",
+    "audit:leak": "node scripts/audit-zero-leak.mjs",
+    "capture:screenshots": "node scripts/capture-screenshots.mjs",
+    "test": "node --test hub/tests/*.test.mjs partners/pineridge-stays/tests/*.test.mjs partners/emeraldfjord-tours/tests/*.test.mjs"
+  },
+  "keywords": [
+    "agentic-web",
+    "nanda",
+    "autonomous-agents",
+    "web-crypto",
+    "nsdeploy",
+    "mit-media-lab",
+    "cognizant-ai-lab"
+  ],
+  "author": "FOKRUL ISLAM & VerdantNANDA Core Architecture Team",
+  "license": "MIT",
+  "devDependencies": {
+    "playwright": "^1.65.1"
+  }
+}

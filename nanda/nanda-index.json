@@ -1,0 +1,78 @@
+{
+  "protocol": "mit-nanda-registry/v1",
+  "registry_name": "MIT NANDA Open Agentic Web Index",
+  "version": "2026.11",
+  "last_updated": "2026-11-15T00:00:00Z",
+  "trust_standard": "ITU-T S17 / MIT NANDA Dec-Cent Identity Profile",
+  "nodes": [
+    {
+      "id": "node-hub-01",
+      "name": "VerdantNANDA Hub Concierge",
+      "origin": "http://127.0.0.1:8080",
+      "network_url": "http://127.0.0.1:8080/concierge_negotiator",
+      "network_name": "concierge_negotiator",
+      "front_man": "concierge_coordinator",
+      "role": "buyer_concierge_negotiator",
+      "tags": ["concierge", "negotiation", "bundle-orchestrator", "eco-luxury"],
+      "public_key_jwk": {
+        "kty": "EC",
+        "crv": "P-256",
+        "x": "W8P6c5HqH1F6_uXQdZ2Ue_eW9kL7jXp0gY1aB2cD3eE",
+        "y": "K9L0m1N2o3P4q5R6s7T8u9V0w1X2y3Z4a5B6c7D8eF0"
+      },
+      "capabilities": [
+        "cross_site_negotiation",
+        "cruse_bundle_synthesis",
+        "ecdsa_verification"
+      ],
+      "compliance_level": "NANDA-A2A-Verified",
+      "status": "online"
+    },
+    {
+      "id": "node-pineridge-02",
+      "name": "PineRidge Eco-Stays",
+      "origin": "http://localhost:8081",
+      "network_url": "http://localhost:8081/pineridge_stays",
+      "network_name": "pineridge_stays",
+      "front_man": "pineridge_host",
+      "role": "supplier_lodging",
+      "tags": ["lodging", "forest-cabins", "panoramic-bbq", "verified-supplier"],
+      "public_key_jwk": {
+        "kty": "EC",
+        "crv": "P-256",
+        "x": "7kF9mQ2rT4vX6zB8dF0hJ2lN4pP6rT8vX0zB2dF4hJ6",
+        "y": "1aC3eG5iK7mO9qS1uW3yA5cE7gI9kM1oQ3sU5wY7aC9"
+      },
+      "capabilities": [
+        "website_get_cabin_state",
+        "website_negotiate_stay_quote",
+        "website_hold_cabin_reservation"
+      ],
+      "compliance_level": "NANDA-A2A-Verified",
+      "status": "online"
+    },
+    {
+      "id": "node-emeraldfjord-03",
+      "name": "EmeraldFjord Expeditions",
+      "origin": "http://localhost:8082",
+      "network_url": "http://localhost:8082/emeraldfjord_tours",
+      "network_name": "emeraldfjord_tours",
+      "front_man": "fjord_guide",
+      "role": "supplier_expeditions",
+      "tags": ["expeditions", "kayaking", "canopy-treks", "electric-shuttles"],
+      "public_key_jwk": {
+        "kty": "EC",
+        "crv": "P-256",
+        "x": "4mP8sU2wZ6cD0gH4kL8pT2vX6zB0dF4hJ8lN2pP6rT0",
+        "y": "8bE2hK6nQ0tW4zC8fJ2pT6vY0cB4dF8hL2rT6vX0zB4"
+      },
+      "capabilities": [
+        "website_get_expedition_state",
+        "website_negotiate_tour_quote",
+        "website_reserve_expedition"
+      ],
+      "compliance_level": "NANDA-A2A-Verified",
+      "status": "online"
+    }
+  ]
+}

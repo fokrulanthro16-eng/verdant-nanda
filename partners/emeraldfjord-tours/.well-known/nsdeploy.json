@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "emeraldfjord_tours",
+      "front_man": "fjord_guide",
+      "aliases": [
+        "emeraldfjord_tours",
+        "fjord_guide"
+      ],
+      "url": "emeraldfjord_tours"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

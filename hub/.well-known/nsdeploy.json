@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "concierge_negotiator",
+      "front_man": "concierge_coordinator",
+      "aliases": [
+        "concierge_negotiator",
+        "concierge_coordinator"
+      ],
+      "url": "concierge_negotiator"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

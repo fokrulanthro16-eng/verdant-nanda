@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "emeraldfjord_tours"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}

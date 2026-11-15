@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VerdantNANDA Hub | 3D Spatial Glass Agentic Cockpit</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <!-- Full-Viewport WebGL Three.js Spatial Background Canvas -->
+  <canvas id="spatial-canvas"></canvas>
+
+  <div class="spatial-cockpit">
+    <!-- Top Spatial Navigation Bar -->
+    <header class="spatial-nav">
+      <div class="brand-badge">
+        <div class="brand-gem-3d">🌲</div>
+        <div class="brand-meta">
+          <h1>VerdantNANDA</h1>
+          <p>MIT NANDA DISCOVERY &bull; WEBCRYPTO ECDSA TRUST &bull; 3D SPATIAL AGENTIC WEB</p>
+        </div>
+      </div>
+      <div class="nav-telemetry-cluster">
+        <div class="telemetry-chip">
+          <span class="pulse-dot"></span> 3 MESH NODES ONLINE
+        </div>
+        <div class="telemetry-chip" style="background: rgba(6,182,212,0.12); border-color: rgba(6,182,212,0.35); color: #67e8f9;">
+          ECDSA-P256 VERIFIED
+        </div>
+        <div id="active-router-pill" class="telemetry-chip" style="background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.35); color: #fde68a;">
+          ROUTER: OTARI · QWEN3.8
+        </div>
+      </div>
+    </header>
+
+    <!-- 3-Column Spatial Bento Cockpit Grid -->
+    <main class="spatial-grid-3col">
+      
+      <!-- ===================================================================
+           COLUMN 1: Concierge Command & Intent Matrix
+           =================================================================== -->
+      <section class="spatial-col">
+        <!-- Card: Intent Composer & Budget Slider -->
+        <div class="spatial-card" style="margin-bottom: 24px;">
+          <div class="card-content">
+            <div class="card-header-spatial">
+              <h2><span>🎯</span> Concierge Intent</h2>
+              <span class="telemetry-chip" style="font-size: 10px;">AAOSA MATRIX</span>
+            </div>
+
+            <!-- Animated Radar Ring Visualizer -->
+            <div class="hologram-viewport" style="height: 120px; margin-bottom: 16px;">
+              <svg class="hologram-svg" viewBox="0 0 300 120">
+                <defs>
+                  <radialGradient id="radarGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#10b981" stop-opacity="0.3"/>
+                    <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="150" cy="60" r="50" fill="url(#radarGlow)"/>
+                <circle cx="150" cy="60" r="50" fill="none" stroke="#10b981" stroke-width="1" stroke-dasharray="4 4" opacity="0.6"/>
+                <circle cx="150" cy="60" r="32" fill="none" stroke="#34d399" stroke-width="1" opacity="0.5"/>
+                <circle cx="150" cy="60" r="14" fill="none" stroke="#a7f3d0" stroke-width="1.5"/>
+                <line x1="90" y1="60" x2="210" y2="60" stroke="#10b981" stroke-width="0.8" opacity="0.4"/>
+                <line x1="150" y1="0" x2="150" y2="120" stroke="#10b981" stroke-width="0.8" opacity="0.4"/>
+                <!-- Node blips -->
+                <circle cx="150" cy="60" r="3.5" fill="#a7f3d0"/>
+                <circle cx="120" cy="48" r="3" fill="#34d399"/>
+                <circle cx="178" cy="72" r="3" fill="#06b6d4"/>
+                <text x="150" y="112" text-anchor="middle" fill="#6ee7b7" font-size="9" font-family="monospace">NANDA DECENTRALIZED MESH SCAN</text>
+              </svg>
+            </div>
+
+            <p style="color: #94a3b8; font-size: 13px; margin-bottom: 14px;">
+              Specify your eco-luxury booking constraints. The Hub coordinates autonomous cross-site negotiation rounds.
+            </p>
+
+            <div style="margin-bottom: 14px;">
+              <label style="font-size: 11px; color: #a7f3d0; text-transform: uppercase; font-weight: 700; display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <span>Target Budget Limit</span>
+                <span id="budget-display" style="font-family: monospace; color: #34d399;">$420 Total</span>
+              </label>
+              <input type="range" id="budget-slider" min="280" max="600" step="10" value="420" 
+                     style="width: 100%; accent-color: #10b981; cursor: pointer;">
+            </div>
+
+            <div style="margin-bottom: 14px;">
+              <textarea id="deal-intent-input" rows="3" 
+                        style="width: 100%; padding: 12px; background: var(--void-inset); border: 1px solid rgba(52,211,153,0.3); border-radius: 12px; color: #fff; font-size: 13px; resize: none; font-family: var(--font-body); line-height: 1.4;">Book 2-night A-frame cabin with terrace BBQ + private kayak tour for 2 under $420 total</textarea>
+            </div>
+
+            <button id="run-negotiation-btn" class="spatial-dock-btn btn-pulse" style="width: 100%; justify-content: center; padding: 12px;">
+              <span>⚡</span> Launch Spatial Negotiation
+            </button>
+
+            <!-- Preset Intent Chips -->
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px;">
+              <span style="font-size: 10px; color: #64748b; width: 100%; text-transform: uppercase;">Presets:</span>
+              <button class="quick-intent-pill" data-budget="420" data-intent="Book 2-night A-frame cabin with terrace BBQ + private kayak tour for 2 under $420 total" style="padding: 4px 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; color: #cbd5e1; font-size: 11px; cursor: pointer;">A-Frame + Kayak ($420)</button>
+              <button class="quick-intent-pill" data-budget="540" data-intent="Book Obsidian Ridge Villa 2 nights + Electric Shuttle under $540" style="padding: 4px 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; color: #cbd5e1; font-size: 11px; cursor: pointer;">Obsidian + Shuttle ($540)</button>
+              <button class="quick-intent-pill" data-budget="480" data-intent="Mosswood Sanctuary 3 nights + Canopy Waterfall Trek under $480" style="padding: 4px 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; color: #cbd5e1; font-size: 11px; cursor: pointer;">Mosswood + Trek ($480)</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: nsDeploy Browser Container -->
+        <div class="spatial-card agentic-container-card">
+          <div class="card-content">
+            <div class="agentic-card-header">
+              <div class="agentic-title-row">
+                <h2><span>💬</span> Agentic Container</h2>
+                <span class="telemetry-chip" style="font-size: 9px; padding: 2px 8px; border-color: rgba(52,211,153,0.3); color: #6ee7b7;">NODE #1</span>
+              </div>
+              <div class="agentic-status-bar">
+                <span class="status-pulse-dot"></span>
+                <span id="assistant-status" class="agentic-status-text">SANDBOX MESH ARMED • OTARI &amp; NEBIUS READY</span>
+              </div>
+            </div>
+            <!-- Mount point for official nsDeploy browser runtime -->
+            <div id="agent-app" style="min-height: 280px;">
+              <div class="agentic-mesh-card">
+                <div class="mesh-telemetry-badge">
+                  <span class="mesh-dot"></span>
+                  <span>DUAL-PROVIDER PROXY ROUTED</span>
+                </div>
+                <div class="mesh-title">Autonomous Concierge Mesh</div>
+                <p class="mesh-desc">
+                  Dual inference gateway armed via <code>/api/gateway</code> (Mozilla Hosted Otari &bull; Nebius Token Factory) with MIT NANDA discovery &amp; WebCrypto trust protocols.
+                </p>
+                <div class="mesh-actions">
+                  <button id="agentic-card-negotiate-btn" class="spatial-dock-btn btn-pulse" style="width: 100%; justify-content: center; padding: 10px; font-size: 12px; margin-top: 4px;">
+                    <span>⚡</span> Run Spatial Deal Negotiation
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           COLUMN 2: 3D Holographic Negotiation Arena & Telemetry
+           =================================================================== -->
+      <section class="spatial-col">
+        <!-- Floating HUD Telemetry Portal -->
+        <div class="center-hud-portal">
+          <div class="hud-stat-item">
+            <span class="hud-stat-label">Telemetry Latency</span>
+            <span class="hud-stat-val">14 ms (Direct Mesh)</span>
+          </div>
+          <div class="hud-stat-item">
+            <span class="hud-stat-label">AAOSA Execution State</span>
+            <span id="hud-aaosa-phase" class="hud-stat-val" style="color: #38bdf8;">Idle · Ready</span>
+          </div>
+          <div class="hud-stat-item">
+            <span class="hud-stat-label">WebCrypto Protocol</span>
+            <span class="hud-stat-val" style="color: #f59e0b;">ECDSA-P256-SHA256</span>
+          </div>
+        </div>
+
+        <!-- Active Deal Result Card (Dynamic) -->
+        <div id="active-deal-banner" style="display: none; margin-bottom: 24px;"></div>
+
+        <!-- Live Agent-to-Agent Negotiation Feed -->
+        <div class="spatial-card">
+          <div class="card-content">
+            <div class="card-header-spatial">
+              <h2><span>📡</span> Live Negotiation & Cryptographic Telemetry</h2>
+              <button id="clear-stream-btn" style="background: none; border: none; color: #64748b; font-size: 11px; cursor: pointer;">Clear Feed</button>
+            </div>
+
+            <div id="negotiation-stream" class="negotiation-stream-spatial">
+              <div style="color: #64748b; font-size: 13px; text-align: center; margin-top: 100px;">
+                Ready. Click <strong>"⚡ Launch Spatial Negotiation"</strong> to observe autonomous counter-offer rounds, 3D energy pulses, and cryptographic signature validation.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           COLUMN 3: Holographic Partner Blueprint Cards
+           =================================================================== -->
+      <section class="spatial-col">
+        <!-- Partner Node 1: PineRidge Eco-Stays Holographic Card -->
+        <div class="spatial-card" style="margin-bottom: 24px;">
+          <div class="card-content">
+            <div class="card-header-spatial">
+              <h2><span>🏡</span> PineRidge Eco-Stays</h2>
+              <span class="telemetry-chip" style="font-size: 10px;">PORT 8081</span>
+            </div>
+
+            <!-- Procedural 3D SVG Wireframe Blueprint of Cedar A-Frame -->
+            <div class="hologram-viewport">
+              <svg class="hologram-svg" viewBox="0 0 340 180">
+                <defs>
+                  <linearGradient id="pineridgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#34d399"/>
+                    <stop offset="100%" stop-color="#059669"/>
+                  </linearGradient>
+                </defs>
+                <!-- Isometric Blueprint Grid -->
+                <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(52,211,153,0.12)" stroke-width="0.8"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#gridPattern)"/>
+
+                <!-- 3D Wireframe A-Frame Structure -->
+                <!-- Base Deck -->
+                <polygon points="60,135 170,165 280,135 170,105" fill="rgba(16,185,129,0.08)" stroke="#10b981" stroke-width="1.2"/>
+                <!-- Front A-Frame Triangle -->
+                <polygon points="170,165 170,30 280,135" fill="none" stroke="#34d399" stroke-width="1.5"/>
+                <!-- Back A-Frame Triangle -->
+                <polygon points="60,135 60,30 170,105" fill="none" stroke="#059669" stroke-width="1.2" stroke-dasharray="3 3"/>
+                <!-- Ridge Beam -->
+                <line x1="60" y1="30" x2="170" y2="30" stroke="#a7f3d0" stroke-width="2"/>
+                <!-- Skylight Trusses -->
+                <line x1="115" y1="30" x2="225" y2="150" stroke="#34d399" stroke-width="0.8"/>
+                <line x1="170" y1="30" x2="170" y2="165" stroke="#a7f3d0" stroke-width="1.5"/>
+                <!-- Wood-Fired Hot Tub Cylinder -->
+                <ellipse cx="90" cy="120" rx="16" ry="8" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="1.2"/>
+                <ellipse cx="90" cy="128" rx="16" ry="8" fill="none" stroke="#06b6d4" stroke-width="1.2"/>
+                <line x1="74" y1="120" x2="74" y2="128" stroke="#06b6d4" stroke-width="1"/>
+                <line x1="106" y1="120" x2="106" y2="128" stroke="#06b6d4" stroke-width="1"/>
+
+                <!-- Dimension HUD text -->
+                <text x="180" y="24" fill="#a7f3d0" font-size="9" font-family="monospace">RIDGE: +34ft · RED CEDAR</text>
+                <text x="14" y="170" fill="#6ee7b7" font-size="8" font-family="monospace">P-256 VERIFIED ARCHITECTURE</text>
+              </svg>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px;">
+              <div>
+                <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">Cedar Canopy A-Frame</div>
+                <div id="pineridge-price-odometer" class="odometer-badge">
+                  <span>$195</span><span class="cents">.00</span> <span style="font-size: 11px; color: #64748b;">/ night</span>
+                </div>
+              </div>
+              <a href="http://localhost:8081" data-partner-node="pineridge" target="_blank" class="spatial-dock-btn" style="text-decoration: none; padding: 6px 12px; font-size: 11px;">
+                Open Node ➔
+              </a>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.4); padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(52,211,153,0.15); font-size: 12px; color: #cbd5e1;">
+              <span style="color: #34d399; font-weight: 700;">Add-on Ready:</span> Panoramic Terrace BBQ Kit (+45) · Multi-Night & Alliance discount supported.
+            </div>
+          </div>
+        </div>
+
+        <!-- Partner Node 2: EmeraldFjord Expeditions Holographic Card -->
+        <div class="spatial-card">
+          <div class="card-content">
+            <div class="card-header-spatial">
+              <h2><span>🛶</span> EmeraldFjord Expeditions</h2>
+              <span class="telemetry-chip" style="font-size: 10px; border-color: rgba(6,182,212,0.35); color: #67e8f9;">PORT 8082</span>
+            </div>
+
+            <!-- Procedural SVG Sonar & Fjord Topographic Map -->
+            <div class="hologram-viewport">
+              <svg class="hologram-svg" viewBox="0 0 340 180">
+                <defs>
+                  <linearGradient id="sonarSweep" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.4"/>
+                    <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <!-- Concentric Bathymetric Depth Lines -->
+                <ellipse cx="170" cy="90" rx="140" ry="70" fill="none" stroke="rgba(6,182,212,0.15)" stroke-width="1"/>
+                <ellipse cx="170" cy="90" rx="105" ry="52" fill="none" stroke="rgba(6,182,212,0.22)" stroke-width="1"/>
+                <ellipse cx="170" cy="90" rx="70" ry="35" fill="none" stroke="rgba(6,182,212,0.3)" stroke-width="1.2"/>
+                <ellipse cx="170" cy="90" rx="35" ry="17" fill="none" stroke="#22d3ee" stroke-width="1.5"/>
+
+                <!-- Sonar Sweep Sector -->
+                <path d="M 170 90 L 290 40 A 140 70 0 0 1 295 105 Z" fill="url(#sonarSweep)"/>
+
+                <!-- Waypoint Blips -->
+                <circle cx="210" cy="65" r="4" fill="#67e8f9"/>
+                <circle cx="130" cy="105" r="3" fill="#a7f3d0"/>
+
+                <text x="218" y="68" fill="#67e8f9" font-size="8" font-family="monospace">WP-1: PHOSPHOR GLOW</text>
+                <text x="70" y="110" fill="#a7f3d0" font-size="8" font-family="monospace">WP-2: SOUND LAUNCH</text>
+                <text x="170" y="165" text-anchor="middle" fill="#22d3ee" font-size="9" font-family="monospace">DEPTH: 180m · HYDRO SONAR SWEEP</text>
+              </svg>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px;">
+              <div>
+                <div style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">Midnight Sun Sea Kayaking</div>
+                <div id="fjord-price-odometer" class="odometer-badge" style="color: #67e8f9; text-shadow: 0 0 16px rgba(6,182,212,0.6);">
+                  <span>$85</span><span class="cents" style="color: #06b6d4;">.00</span> <span style="font-size: 11px; color: #64748b;">/ person</span>
+                </div>
+              </div>
+              <a href="http://localhost:8082" data-partner-node="emeraldfjord" target="_blank" class="spatial-dock-btn" style="text-decoration: none; padding: 6px 12px; font-size: 11px;">
+                Open Node ➔
+              </a>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.4); padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(6,182,212,0.18); font-size: 12px; color: #cbd5e1;">
+              <span style="color: #67e8f9; font-weight: 700;">Slots Available:</span> 18:30 & 20:30 Departures · Tandem kayaks & safety immersion gear included.
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- =======================================================================
+       Floating Bottom Spatial Command Dock
+       ======================================================================= -->
+  <footer class="spatial-dock">
+    <button id="dock-negotiate-btn" class="spatial-dock-btn btn-pulse">
+      <span>⚡</span> Launch Spatial Negotiation
+    </button>
+    <button id="dock-nanda-btn" class="spatial-dock-btn">
+      <span>🛡️</span> NANDA Trust & .JSON
+    </button>
+    <button id="dock-sdk-btn" class="spatial-dock-btn">
+      <span>🧩</span> 1-Line Agentify SDK
+    </button>
+    <button id="dock-byok-btn" class="spatial-dock-btn">
+      <span>⚙️</span> AI Router & BYOK Settings
+    </button>
+  </footer>
+
+  <!-- =======================================================================
+       MODAL 1: NANDA Trust & JSON Manifest Inspector (Clean Hidden)
+       ======================================================================= -->
+  <div id="modal-nanda" class="spatial-modal-backdrop">
+    <div class="spatial-modal-dialog">
+      <div class="modal-header-spatial">
+        <h3>🛡️ MIT NANDA Discovery & Cryptographic Inspector</h3>
+        <button class="modal-close-btn-spatial" data-close="modal-nanda">✕</button>
+      </div>
+      <div class="modal-body-spatial">
+        <p style="font-size: 13px; color: #94a3b8; margin: 0;">
+          Inspect live ITU-T S17 / MIT NANDA Registry Index, WebCrypto ECDSA P-256 public keys, and canonical <code>agent-manifest.json</code> manifests published across all 3 nodes.
+        </p>
+        <div style="display: flex; gap: 8px;">
+          <button id="inspect-tab-index" class="spatial-dock-btn" style="padding: 6px 12px; font-size: 12px;">nanda-index.json</button>
+          <button id="inspect-tab-hub" class="spatial-dock-btn" style="padding: 6px 12px; font-size: 12px;">Hub Manifest</button>
+          <button id="inspect-tab-pineridge" class="spatial-dock-btn" style="padding: 6px 12px; font-size: 12px;">PineRidge Manifest</button>
+          <button id="inspect-tab-fjord" class="spatial-dock-btn" style="padding: 6px 12px; font-size: 12px;">EmeraldFjord Manifest</button>
+        </div>
+        <pre id="inspect-viewer" style="background: var(--void-inset); border: 1px solid rgba(52,211,153,0.2); padding: 16px; border-radius: 14px; font-size: 12px; font-family: var(--font-mono); color: #a7f3d0; max-height: 380px; overflow-y: auto; margin: 0;"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       MODAL 2: 1-Line Drop-in Agentify SDK (Clean Hidden)
+       ======================================================================= -->
+  <div id="modal-sdk" class="spatial-modal-backdrop">
+    <div class="spatial-modal-dialog">
+      <div class="modal-header-spatial">
+        <h3>🧩 1-Line Drop-In Agentify SDK & DOM Compiler</h3>
+        <button class="modal-close-btn-spatial" data-close="modal-sdk">✕</button>
+      </div>
+      <div class="modal-body-spatial">
+        <p style="font-size: 13px; color: #94a3b8; margin: 0;">
+          Drop <code>verdant-agentify.js</code> into any standard HTML webpage. It scans custom DOM annotations (<code>data-agent-action</code>, <code>data-agent-state</code>), synthesizes compliant <code>agent-manifest.json</code> + <code>.network.json</code>, and outputs the NANDA node registration payload.
+        </p>
+        <div style="background: var(--void-inset); border: 1px solid rgba(52,211,153,0.25); padding: 16px; border-radius: 12px; font-family: var(--font-mono); font-size: 13px; color: #a7f3d0;">
+          &lt;script src="./sdk/verdant-agentify.js" data-site-name="My Eco Lodge" data-network="my_lodge" data-nanda-register="true"&gt;&lt;/script&gt;
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 8px;">
+          <a href="./sdk/index.html" class="spatial-dock-btn btn-pulse" style="text-decoration: none;">
+            Open Interactive SDK Playground ➔
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       MODAL 3: AI Router & BYOK Key Manager (Clean Hidden)
+       ======================================================================= -->
+  <div id="modal-byok" class="spatial-modal-backdrop">
+    <div class="spatial-modal-dialog">
+      <div class="modal-header-spatial">
+        <h3>⚙️ AI Gateway & BYOK Key Manager</h3>
+        <button class="modal-close-btn-spatial" data-close="modal-byok">✕</button>
+      </div>
+      <div class="modal-body-spatial">
+        <!-- 2-Mode Switcher -->
+        <div class="mode-toggle-group">
+          <button id="byok-mode-sandbox-btn" class="mode-toggle-btn is-active">
+            <span>🛡️</span> Sponsored Judge Sandbox (Zero-Key Proxy - Default)
+          </button>
+          <button id="byok-mode-byok-btn" class="mode-toggle-btn">
+            <span>🔑</span> Direct Browser BYOK (Spec-Compliant Client Mode)
+          </button>
+        </div>
+
+        <!-- Mode Dynamic Explainer Banner -->
+        <div id="byok-mode-explainer" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 12px; padding: 12px 14px; font-size: 12px; color: #a7f3d0; line-height: 1.5;">
+          <strong>🛡️ Zero-Leak Judge Sandbox:</strong> Inference requests route securely through <code>/api/gateway</code> using server environment keys. Judges can test Mozilla Otari and Nebius models with zero key setup and zero credential leakage.
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 12px; color: #94a3b8; margin-bottom: 6px;">Provider Gateway:</label>
+          <select id="byok-provider-select" style="width: 100%; padding: 10px; background: var(--void-inset); border: 1px solid rgba(52,211,153,0.25); border-radius: 8px; color: #fff; font-size: 13px;">
+            <option value="otari">Mozilla Hosted Otari (Official Hackathon Router - Default)</option>
+            <option value="nebius">Nebius Token Factory (Multi-Provider Preset)</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 12px; color: #94a3b8; margin-bottom: 6px;">Base URL:</label>
+          <input type="text" id="byok-url-input" style="width: 100%; padding: 10px; background: var(--void-inset); border: 1px solid rgba(52,211,153,0.25); border-radius: 8px; color: #fff; font-size: 13px;">
+        </div>
+
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label style="font-size: 12px; color: #94a3b8;">Verified Model:</label>
+            <span id="byok-model-helper" style="font-size: 11px; color: #34d399; font-family: monospace;">Provider Default</span>
+          </div>
+          <select id="byok-model-select" style="width: 100%; padding: 10px; background: var(--void-inset); border: 1px solid rgba(52,211,153,0.25); border-radius: 8px; color: #fff; font-size: 13px; margin-bottom: 8px;">
+            <!-- Populated dynamically -->
+          </select>
+          <input type="text" id="byok-model-input" style="width: 100%; padding: 8px 10px; background: rgba(0,0,0,0.4); border: 1px solid rgba(52,211,153,0.18); border-radius: 8px; color: #94a3b8; font-size: 12px; font-family: monospace;">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 12px; color: #94a3b8; margin-bottom: 6px;">API Key (localStorage only):</label>
+          <input type="password" id="byok-key-input" placeholder="Paste your API key or click 1-Click Load below..." style="width: 100%; padding: 10px; background: var(--void-inset); border: 1px solid rgba(52,211,153,0.25); border-radius: 8px; color: #fff; font-size: 13px;">
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(52,211,153,0.18); padding-top: 16px; margin-top: 8px;">
+          <button id="byok-load-dev-key" class="spatial-dock-btn" style="border-color: #10b981; color: #a7f3d0; font-weight: 700;">
+            ⚡ 1-Click Load Local Dev Key
+          </button>
+          <div style="display: flex; gap: 8px;">
+            <button id="byok-clear-btn" class="spatial-dock-btn" style="border-color: rgba(239,68,68,0.4); color: #fca5a5;">
+              Clear Key
+            </button>
+            <button id="byok-save-btn" class="spatial-dock-btn btn-pulse">
+              Save Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================================
+       MODAL 4: Finalize Bundle Modal (Clean Hidden)
+       ======================================================================= -->
+  <div id="modal-finalize" class="spatial-modal-backdrop">
+    <div class="spatial-modal-dialog" style="width: 520px;">
+      <div class="modal-header-spatial">
+        <h3>🌿 Confirm Cross-Site Bundle</h3>
+        <button class="modal-close-btn-spatial" data-close="modal-finalize">✕</button>
+      </div>
+      <div class="modal-body-spatial">
+        <p style="font-size: 13px; color: #94a3b8; margin: 0;">
+          Please enter primary guest details to confirm both your PineRidge Cabin and EmeraldFjord Kayak holds.
+        </p>
+        <div>
+          <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 4px;">Primary Guest Name:</label>
+          <input type="text" id="finalize-name" value="Elena Rostova" style="width: 100%; padding: 10px; background: var(--void-inset); border: 1px solid rgba(52,211,153,0.25); border-radius: 8px; color: #fff; font-size: 13px;">
+        </div>
+        <div>
+          <label style="font-size: 12px; color: #94a3b8; display: block; margin-bottom: 4px;">Guest Email:</label>
+          <input type="email" id="finalize-email" value="elena.rostova@example.com" style="width: 100%; padding: 10px; background: var(--void-inset); border: 1px solid rgba(52,211,153,0.25); border-radius: 8px; color: #fff; font-size: 13px;">
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 12px;">
+          <button class="spatial-dock-btn" data-close="modal-finalize">Cancel</button>
+          <button id="confirm-bundle-submit-btn" class="spatial-dock-btn btn-pulse">Confirm & Lock In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spatial Application Scripts -->
+  <script type="module" src="./js/spatial-3d.js"></script>
+  <script type="module" src="./js/card-tilt.js"></script>
+
+  <script type="module">
+    import { App } from "./js/app.js";
+    import { ByokManager, PROVIDER_PRESETS } from "./js/byok-manager.js";
+
+    // Clean Modal Wiring (Opening & Closing)
+    const openModal = (id) => {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.add("is-open");
+    };
+
+    const closeModal = (id) => {
+      const modal = document.getElementById(id);
+      if (modal) modal.classList.remove("is-open");
+    };
+
+    document.getElementById("dock-nanda-btn")?.addEventListener("click", () => openModal("modal-nanda"));
+    document.getElementById("dock-sdk-btn")?.addEventListener("click", () => openModal("modal-sdk"));
+    document.getElementById("dock-byok-btn")?.addEventListener("click", () => openModal("modal-byok"));
+
+    document.querySelectorAll("[data-close]").forEach(el => {
+      el.addEventListener("click", () => {
+        closeModal(el.getAttribute("data-close"));
+      });
+    });
+
+    window.openFinalizeModal = () => openModal("modal-finalize");
+
+    // Dynamic Budget Slider
+    const budgetSlider = document.getElementById("budget-slider");
+    const budgetDisplay = document.getElementById("budget-display");
+    const dealInput = document.getElementById("deal-intent-input");
+
+    budgetSlider?.addEventListener("input", (e) => {
+      const val = e.target.value;
+      budgetDisplay.textContent = `$${val} Total`;
+      dealInput.value = `Book 2-night A-frame cabin with terrace BBQ + private kayak tour for 2 under $${val} total`;
+    });
+
+    // Preset chips
+    document.querySelectorAll(".quick-intent-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        const intent = pill.getAttribute("data-intent");
+        const budget = pill.getAttribute("data-budget");
+        dealInput.value = intent;
+        if (budgetSlider) budgetSlider.value = budget;
+        if (budgetDisplay) budgetDisplay.textContent = `$${budget} Total`;
+        triggerNegotiation();
+      });
+    });
+
+    // Run Negotiation with 3D Laser Pulse Trigger!
+    const triggerNegotiation = () => {
+      // 1. Trigger high-speed 3D energy pulse in Three.js background
+      if (typeof window.trigger3DNegotiationPulse === "function") {
+        window.trigger3DNegotiationPulse("negotiating");
+      }
+
+      // Update HUD phase indicator
+      const hudPhase = document.getElementById("hud-aaosa-phase");
+      if (hudPhase) {
+        hudPhase.textContent = "AAOSA: Determine ➔ Fulfill";
+        hudPhase.style.color = "#34d399";
+      }
+
+      // 2. Run real cross-site negotiation engine
+      const intent = dealInput.value;
+      App.page.runNegotiationSimulation(intent).then(() => {
+        if (hudPhase) {
+          hudPhase.textContent = "AAOSA: Follow Up · Deal Held";
+          hudPhase.style.color = "#a7f3d0";
+        }
+      });
+    };
+
+    document.getElementById("run-negotiation-btn")?.addEventListener("click", triggerNegotiation);
+    document.getElementById("dock-negotiate-btn")?.addEventListener("click", triggerNegotiation);
+    document.getElementById("agentic-card-negotiate-btn")?.addEventListener("click", triggerNegotiation);
+
+    document.getElementById("clear-stream-btn")?.addEventListener("click", () => {
+      App.page.stream.clear();
+    });
+
+    // Confirm bundle submission
+    document.getElementById("confirm-bundle-submit-btn")?.addEventListener("click", () => {
+      const name = document.getElementById("finalize-name").value;
+      const email = document.getElementById("finalize-email").value;
+      App.page.finalizeBooking({
+        dealId: App.page.activeDeal?.dealId || "DEAL-AUTO",
+        guestName: name,
+        guestEmail: email
+      });
+      closeModal("modal-finalize");
+    });
+
+    // NANDA Inspector Tab Loading
+    const inspectorViewer = document.getElementById("inspect-viewer");
+    const loadInspectTab = async (url) => {
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        inspectorViewer.textContent = JSON.stringify(data, null, 2);
+      } catch (e) {
+        inspectorViewer.textContent = "// Error loading file: " + e.message;
+      }
+    };
+
+    document.getElementById("inspect-tab-index")?.addEventListener("click", () => loadInspectTab("./nanda/nanda-index.json"));
+    document.getElementById("inspect-tab-hub")?.addEventListener("click", () => loadInspectTab("./agent-manifest.json"));
+    document.getElementById("inspect-tab-pineridge")?.addEventListener("click", () => loadInspectTab("http://localhost:8081/agent-manifest.json"));
+    document.getElementById("inspect-tab-fjord")?.addEventListener("click", () => loadInspectTab("http://localhost:8082/agent-manifest.json"));
+    loadInspectTab("./nanda/nanda-index.json");
+
+    // BYOK & AI Gateway Manager
+    const providerSelect = document.getElementById("byok-provider-select");
+    const urlInput = document.getElementById("byok-url-input");
+    const modelSelect = document.getElementById("byok-model-select");
+    const modelInput = document.getElementById("byok-model-input");
+    const keyInput = document.getElementById("byok-key-input");
+    const routerPill = document.getElementById("active-router-pill");
+    const btnModeSandbox = document.getElementById("byok-mode-sandbox-btn");
+    const btnModeByok = document.getElementById("byok-mode-byok-btn");
+    const explainerBanner = document.getElementById("byok-mode-explainer");
+
+    let currentMode = "sandbox"; // default
+
+    const populateModelSelect = (providerId, selectedModel) => {
+      const preset = PROVIDER_PRESETS[providerId] || PROVIDER_PRESETS.otari;
+      modelSelect.innerHTML = "";
+      preset.models.forEach(m => {
+        const opt = document.createElement("option");
+        opt.value = m.id;
+        opt.textContent = m.label;
+        if (m.id === selectedModel) opt.selected = true;
+        modelSelect.appendChild(opt);
+      });
+      modelInput.value = selectedModel || preset.defaultModel;
+    };
+
+    const updateModeUI = (mode) => {
+      currentMode = mode;
+      const origin = window.location.origin || "http://127.0.0.1:8080";
+      const chosenProvider = providerSelect.value;
+      const preset = PROVIDER_PRESETS[chosenProvider] || PROVIDER_PRESETS.otari;
+
+      if (mode === "sandbox") {
+        btnModeSandbox.classList.add("is-active");
+        btnModeByok.classList.remove("is-active");
+        explainerBanner.style.background = "rgba(16,185,129,0.1)";
+        explainerBanner.style.borderColor = "rgba(16,185,129,0.3)";
+        explainerBanner.style.color = "#a7f3d0";
+        explainerBanner.innerHTML = `<strong>🛡️ Zero-Leak Judge Sandbox:</strong> Inference requests route securely through <code>/api/gateway</code> using server environment keys. Evaluators and judges can test both Mozilla Otari and Nebius models live with zero friction and zero key leakage.`;
+        
+        urlInput.value = `${origin}/api/gateway`;
+        urlInput.disabled = true;
+        keyInput.value = "●●●●●●●● (Server Managed Secret · Zero Key Exposure)";
+        keyInput.disabled = true;
+      } else {
+        btnModeByok.classList.add("is-active");
+        btnModeSandbox.classList.remove("is-active");
+        explainerBanner.style.background = "rgba(6,182,212,0.1)";
+        explainerBanner.style.borderColor = "rgba(6,182,212,0.35)";
+        explainerBanner.style.color = "#a5f3fc";
+        explainerBanner.innerHTML = `<strong>🔑 Direct Browser BYOK Mode:</strong> Calls connect directly from your browser to the provider router (<code>${preset.baseUrl}</code>). Your secret key is stored strictly in your browser's <code>localStorage</code>.`;
+        
+        urlInput.value = preset.baseUrl;
+        urlInput.disabled = false;
+        
+        const existingKey = localStorage.getItem("nsdeploy_api_key");
+        keyInput.value = (existingKey && existingKey !== "sponsored-judge-sandbox-token") ? existingKey : "";
+        keyInput.disabled = false;
+        keyInput.placeholder = `Enter your ${preset.name.split(" ")[0]} API key...`;
+      }
+    };
+
+    // Initialize from storage or default
+    const activeProfile = ByokManager.getActiveProfile();
+    providerSelect.value = activeProfile.provider || "otari";
+    populateModelSelect(providerSelect.value, activeProfile.model);
+    updateModeUI(activeProfile.mode || "sandbox");
+
+    if (routerPill) {
+      routerPill.textContent = `ROUTER: ${providerSelect.value.toUpperCase()} · ${currentMode.toUpperCase()}`;
+    }
+
+    btnModeSandbox.addEventListener("click", () => updateModeUI("sandbox"));
+    btnModeByok.addEventListener("click", () => updateModeUI("byok"));
+
+    providerSelect.addEventListener("change", () => {
+      const chosen = providerSelect.value;
+      const preset = PROVIDER_PRESETS[chosen];
+      populateModelSelect(chosen, preset.defaultModel);
+      updateModeUI(currentMode);
+    });
+
+    modelSelect.addEventListener("change", () => {
+      modelInput.value = modelSelect.value;
+    });
+
+    document.getElementById("byok-load-dev-key")?.addEventListener("click", async () => {
+      const chosen = providerSelect.value;
+      const prof = await ByokManager.loadLocalDevKey(chosen);
+      if (prof) {
+        updateModeUI("byok");
+        urlInput.value = prof.baseUrl;
+        modelInput.value = prof.model;
+        populateModelSelect(chosen, prof.model);
+        keyInput.value = prof.key;
+        if (routerPill) {
+          routerPill.textContent = `ROUTER: ${chosen.toUpperCase()} · DEV KEY LOADED`;
+        }
+        alert(`Loaded local test key for ${PROVIDER_PRESETS[chosen].name} into browser localStorage.`);
+      }
+    });
+
+    document.getElementById("byok-save-btn")?.addEventListener("click", () => {
+      const chosen = providerSelect.value;
+      const model = modelInput.value;
+      if (currentMode === "sandbox") {
+        ByokManager.setSandboxMode(chosen, model);
+        if (routerPill) routerPill.textContent = `ROUTER: ${chosen.toUpperCase()} · SANDBOX`;
+      } else {
+        ByokManager.saveProfile({
+          mode: "byok",
+          provider: chosen,
+          baseUrl: urlInput.value,
+          model: model,
+          key: keyInput.value
+        });
+        if (routerPill) routerPill.textContent = `ROUTER: ${chosen.toUpperCase()} · BYOK`;
+      }
+      alert(`AI gateway profile (${currentMode.toUpperCase()}) saved to browser localStorage.`);
+      closeModal("modal-byok");
+    });
+
+    document.getElementById("byok-clear-btn")?.addEventListener("click", () => {
+      ByokManager.clearKeys();
+      keyInput.value = "";
+      if (routerPill) routerPill.textContent = "ROUTER: NO KEY";
+      alert("AI credentials purged from browser localStorage.");
+    });
+
+    // Dynamic Origin Resolution: Resolve Partner Links on Single Domain vs Local Ports
+    const isSingleDomain = (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") || !window.location.port;
+    document.querySelectorAll("[data-partner-node]").forEach(el => {
+      const node = el.getAttribute("data-partner-node");
+      if (isSingleDomain) {
+        el.href = node === "pineridge" ? "/partners/pineridge-stays/" : "/partners/emeraldfjord-tours/";
+      } else {
+        el.href = node === "pineridge" ? "http://localhost:8081/" : "http://localhost:8082/";
+      }
+    });
+  </script>
+
+  <!-- Mount Official Assistant Runtime -->
+  <script type="module" src="./site.js"></script>
+</body>
+</html>

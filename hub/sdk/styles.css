@@ -1,0 +1,678 @@
+/* ==========================================================================
+   VerdantNANDA - "Emerald Singularity" Spatial 3D Glass Design System
+   Target: The Open Agentic Web Challenge (Cognizant / MIT NANDA / Mozilla)
+   Zero Stock Photos • Pure Three.js WebGL & Holographic Procedural Vectors
+   ========================================================================== */
+
+:root {
+  /* Deep Forest-Obsidian Void */
+  --void-bg: #030906;
+  --void-deep: #06100c;
+  --void-surface: rgba(10, 28, 20, 0.58);
+  --void-surface-hover: rgba(14, 38, 28, 0.72);
+  --void-inset: rgba(3, 10, 7, 0.75);
+
+  /* Bioluminescent Spatial Tokens */
+  --emerald-neon: #10b981;
+  --emerald-mint: #a7f3d0;
+  --emerald-glow: rgba(16, 185, 129, 0.5);
+  --cyan-portal: #06b6d4;
+  --cyan-glow: rgba(6, 182, 212, 0.45);
+  --gold-attest: #f59e0b;
+  --gold-glow: rgba(245, 158, 11, 0.4);
+
+  /* VisionOS Specular Refractive Borders */
+  --border-specular: 1px solid rgba(52, 211, 153, 0.22);
+  --border-specular-active: 1px solid rgba(167, 243, 208, 0.55);
+  --glass-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+  /* Typography */
+  --font-display: -apple-system, BlinkMacSystemFont, "Cabinet Grotesk", "Segoe UI", Roboto, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* nsDeploy Runtime Theme */
+  --ns-primary: #10b981;
+  --ns-accent: #059669;
+  --ns-bg: rgba(4, 14, 10, 0.94);
+  --ns-surface: rgba(8, 24, 17, 0.88);
+  --ns-border: rgba(52, 211, 153, 0.25);
+  --ns-text: #e2e8f0;
+  --ns-text-muted: #94a3b8;
+  --ns-radius: 16px;
+}
+
+/* Reset & Viewport */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--void-bg);
+  color: #e2e8f0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Three.js Fixed Background Canvas */
+#spatial-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Main Spatial Layout Container */
+.spatial-cockpit {
+  position: relative;
+  z-index: 10;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 32px 120px;
+}
+
+/* Top Spatial Navigation Header */
+.spatial-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 28px;
+  background: linear-gradient(135deg, rgba(10, 28, 20, 0.65) 0%, rgba(4, 14, 10, 0.85) 100%);
+  border: var(--border-specular);
+  border-radius: 20px;
+  backdrop-filter: blur(28px) saturate(190%);
+  box-shadow: var(--glass-shadow);
+  margin-bottom: 24px;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-gem-3d {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 30% 30%, #34d399 0%, #064e3b 70%, #022c22 100%);
+  border: 1px solid rgba(167, 243, 208, 0.4);
+  box-shadow: 0 0 24px rgba(16, 185, 129, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.brand-meta h1 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-meta p {
+  font-size: 11px;
+  color: var(--emerald-mint);
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+}
+
+.nav-telemetry-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.telemetry-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--emerald-mint);
+}
+
+.telemetry-chip .pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--emerald-neon);
+  box-shadow: 0 0 8px var(--emerald-neon);
+  animation: beaconPulse 2s infinite ease-in-out;
+}
+
+@keyframes beaconPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.7); opacity: 0.4; }
+}
+
+/* 3-Column Spatial Bento Cockpit Grid */
+.spatial-grid-3col {
+  display: grid;
+  grid-template-columns: 360px 1fr 380px;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 1200px) {
+  .spatial-grid-3col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Spatial VisionOS Bento Card */
+.spatial-card {
+  background: linear-gradient(135deg, rgba(10, 28, 20, 0.58) 0%, rgba(4, 14, 10, 0.78) 100%);
+  backdrop-filter: blur(28px) saturate(190%);
+  border: var(--border-specular);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+  transform-style: preserve-3d;
+}
+
+.spatial-card:hover {
+  border-color: rgba(167, 243, 208, 0.45);
+  box-shadow: 0 32px 72px rgba(0, 0, 0, 0.75), 0 0 24px rgba(16, 185, 129, 0.2);
+}
+
+/* Specular cursor glare layer */
+.spatial-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 24px;
+  z-index: 1;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.card-header-spatial {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.card-header-spatial h2 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Agentic Container Card Layout & Status Bar */
+.agentic-container-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.agentic-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(52, 211, 153, 0.15);
+  padding-bottom: 14px;
+}
+
+.agentic-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.agentic-title-row h2 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.agentic-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-radius: 8px;
+  padding: 7px 10px;
+  width: 100%;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.12);
+}
+
+.status-pulse-dot {
+  width: 7px;
+  height: 7px;
+  background: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+  flex-shrink: 0;
+  animation: beaconPulse 2s infinite ease-in-out;
+}
+
+.agentic-status-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #a7f3d0;
+  text-transform: uppercase;
+  white-space: normal;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* Standalone / Fallback Mesh Presentation inside #agent-app */
+.agentic-mesh-card {
+  background: rgba(3, 10, 7, 0.7);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mesh-telemetry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: #6ee7b7;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mesh-dot {
+  width: 5px;
+  height: 5px;
+  background: #34d399;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #34d399;
+}
+
+.mesh-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.2px;
+}
+
+.mesh-desc {
+  font-size: 12px;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.mesh-desc code {
+  color: #a7f3d0;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* Procedural Holographic Vector Components */
+.hologram-viewport {
+  width: 100%;
+  height: 180px;
+  background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.12) 0%, rgba(3, 9, 6, 0.8) 80%);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hologram-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Hologram Scanline effect */
+.hologram-viewport::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.25) 51%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Floating HUD Portal in Center Column */
+.center-hud-portal {
+  background: rgba(3, 9, 6, 0.45);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  border-radius: 18px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.hud-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hud-stat-label {
+  font-size: 10px;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.hud-stat-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--emerald-mint);
+}
+
+/* Live Telemetry Stream */
+.negotiation-stream-spatial {
+  height: 380px;
+  overflow-y: auto;
+  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.negotiation-stream-spatial::-webkit-scrollbar {
+  width: 5px;
+}
+
+.negotiation-stream-spatial::-webkit-scrollbar-thumb {
+  background: rgba(167, 243, 208, 0.2);
+  border-radius: 9999px;
+}
+
+/* Stream Message Item */
+.stream-msg-card {
+  padding: 14px 16px;
+  background: rgba(3, 10, 7, 0.7);
+  border: 1px solid rgba(52, 211, 153, 0.15);
+  border-left: 3px solid var(--emerald-neon);
+  border-radius: 12px;
+  font-size: 13px;
+  animation: fadeInMsg 0.25s ease;
+}
+
+@keyframes fadeInMsg {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Price Odometer Badge */
+.odometer-badge {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--emerald-mint);
+  text-shadow: 0 0 16px rgba(16, 185, 129, 0.6);
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.odometer-badge .cents {
+  font-size: 16px;
+  color: var(--emerald-neon);
+}
+
+/* Floating Bottom Spatial Command Dock */
+.spatial-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: rgba(6, 16, 12, 0.85);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  border-radius: 9999px;
+  backdrop-filter: blur(32px) saturate(200%);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(16, 185, 129, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spatial-dock-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(52, 211, 153, 0.15);
+  color: #e2e8f0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.spatial-dock-btn:hover {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: var(--emerald-neon);
+  color: var(--emerald-mint);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+}
+
+.spatial-dock-btn.btn-pulse {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #030906;
+  font-weight: 800;
+  border: 1px solid rgba(167, 243, 208, 0.5);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.spatial-dock-btn.btn-pulse:hover {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 26px rgba(16, 185, 129, 0.6);
+}
+
+/* Modals - Clean Hidden by Default */
+.spatial-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 4, 0.88);
+  backdrop-filter: blur(24px);
+  z-index: 100000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.spatial-modal-backdrop.is-open {
+  display: flex;
+  opacity: 1;
+}
+
+.spatial-modal-dialog {
+  background: linear-gradient(135deg, rgba(10, 28, 20, 0.96) 0%, rgba(4, 14, 10, 0.98) 100%);
+  border: var(--border-specular-active);
+  border-radius: 24px;
+  width: 780px;
+  max-width: 95vw;
+  max-height: 86vh;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(16, 185, 129, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #e2e8f0;
+  transform: scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spatial-modal-backdrop.is-open .spatial-modal-dialog {
+  transform: scale(1);
+}
+
+.modal-header-spatial {
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(52, 211, 153, 0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header-spatial h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--emerald-mint);
+  text-transform: uppercase;
+}
+
+.modal-close-btn-spatial {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.modal-body-spatial {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Custom nsDeploy Chat Widget Inside Spatial Glass */
+#agent-app {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+#agent-app .ns-chat {
+  background: rgba(3, 9, 6, 0.65) !important;
+  border: 1px solid rgba(52, 211, 153, 0.18) !important;
+  border-radius: 18px !important;
+}
+
+#agent-app .ns-msg.bot {
+  background: rgba(10, 28, 20, 0.8) !important;
+  border: 1px solid rgba(52, 211, 153, 0.2) !important;
+  color: #e2e8f0 !important;
+}
+
+#agent-app .ns-msg.user {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border: 1px solid rgba(16, 185, 129, 0.4) !important;
+  color: #a7f3d0 !important;
+}
+
+#agent-app .ns-input-box {
+  background: rgba(2, 6, 4, 0.85) !important;
+  border: 1px solid rgba(52, 211, 153, 0.25) !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+}
+
+/* AI Gateway Mode Toggle Pills */
+.mode-toggle-group {
+  display: flex;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  margin-bottom: 14px;
+}
+
+.mode-toggle-btn {
+  flex: 1;
+  padding: 9px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.mode-toggle-btn.is-active {
+  background: rgba(16, 185, 129, 0.18);
+  color: #a7f3d0;
+  border-color: rgba(52, 211, 153, 0.5);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.22);
+}
+
+.mode-toggle-btn:hover:not(.is-active) {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f1f5f9;
+}
+

@@ -1,0 +1,83 @@
+{
+  "brand": "VerdantNANDA Autonomous Concierge",
+  "networks": [
+    {
+      "name": "concierge_negotiator",
+      "front_man": "concierge_coordinator",
+      "hocon": "./concierge_negotiator.network.json",
+      "description": "Discover eco-cabins and kayak expeditions, negotiate cross-site bundle discounts, and confirm verified stays.",
+      "tags": [
+        "agentified-website",
+        "nanda-concierge",
+        "bundle-negotiation"
+      ],
+      "sample_queries": [
+        "What partner eco-stays and expeditions are registered in the network?",
+        "Can you negotiate a 2-night A-frame cabin with terrace BBQ + private kayak tour for 2 under $420 total?",
+        "Verify the cryptographic ECDSA signature on this partner quote.",
+        "Finalize and lock in the negotiated bundle reservation."
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [
+    "http://localhost:8081",
+    "http://localhost:8082"
+  ],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Calls only the partner sites in allowed_peers after visitor consent."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "concierge_negotiator",
+    "front_man": "concierge_coordinator",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#10b981"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "concierge_negotiator",
+        "front_man": "concierge_coordinator",
+        "aliases": [
+          "concierge_negotiator",
+          "concierge_coordinator"
+        ],
+        "url": "concierge_negotiator"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_hub_state",
+      "verify_partner_signature",
+      "assemble_bundle_deal",
+      "finalize_bundle_booking"
+    ]
+  }
+}

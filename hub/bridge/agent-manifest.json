@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "concierge_negotiator"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}

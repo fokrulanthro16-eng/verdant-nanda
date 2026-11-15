@@ -1,0 +1,86 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/api/gateway/:match*",
+      "destination": "/api/gateway"
+    },
+    {
+      "source": "/api/gateway",
+      "destination": "/api/gateway"
+    },
+    {
+      "source": "/sdk/:match*",
+      "destination": "/sdk/:match*"
+    },
+    {
+      "source": "/sdk",
+      "destination": "/sdk/index.html"
+    },
+    {
+      "source": "/partners/pineridge-stays/:match*",
+      "destination": "/partners/pineridge-stays/:match*"
+    },
+    {
+      "source": "/partners/pineridge-stays",
+      "destination": "/partners/pineridge-stays/index.html"
+    },
+    {
+      "source": "/partners/emeraldfjord-tours/:match*",
+      "destination": "/partners/emeraldfjord-tours/:match*"
+    },
+    {
+      "source": "/partners/emeraldfjord-tours",
+      "destination": "/partners/emeraldfjord-tours/index.html"
+    },
+    {
+      "source": "/nanda/:match*",
+      "destination": "/nanda/:match*"
+    },
+    {
+      "source": "/nanda",
+      "destination": "/nanda/nanda-index.json"
+    },
+    {
+      "source": "/(styles\\.css|spatial-3d\\.js|site\\.js|site-actions\\.js|agent-manifest\\.json|links\\.json|agent-mcp\\.json|concierge_negotiator\\.hocon|concierge_negotiator\\.network\\.json)",
+      "destination": "/hub/$1"
+    },
+    {
+      "source": "/(js|bridge|runtime|tests|\\.well-known)/:match*",
+      "destination": "/hub/$1/:match*"
+    },
+    {
+      "source": "/",
+      "destination": "/hub/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)\\.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, X-Provider, X-Nsdeploy-Route" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.network\\.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, X-Provider, X-Nsdeploy-Route" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, X-Provider, X-Nsdeploy-Route" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "brand": "PineRidge Eco-Stays Host",
+  "networks": [
+    {
+      "name": "pineridge_stays",
+      "front_man": "pineridge_host",
+      "hocon": "./pineridge_stays.network.json",
+      "description": "Explore luxury eco-cabins, reserve stays with panoramic terrace BBQ kits, and negotiate bundle rates.",
+      "tags": [
+        "agentified-website",
+        "forest-cabins",
+        "eco-luxury"
+      ],
+      "sample_queries": [
+        "Which cabin has a panoramic hot tub and skylights?",
+        "What would a 2-night stay in the Cedar Canopy A-Frame cost with the Terrace BBQ package?",
+        "Can you quote a stay for 2 guests from next Friday for 2 nights with the EmeraldFjord alliance discount?",
+        "Hold a reservation for Elena Rostova for the Cedar Canopy A-Frame."
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Local agents and page-local actions only."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "pineridge_stays",
+    "front_man": "pineridge_host",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#10b981"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "pineridge_stays",
+        "front_man": "pineridge_host",
+        "aliases": [
+          "pineridge_stays",
+          "pineridge_host"
+        ],
+        "url": "pineridge_stays"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_cabin_state",
+      "check_cabin_availability",
+      "negotiate_stay_quote",
+      "fill_stay_form",
+      "hold_cabin_reservation",
+      "cancel_cabin_reservation"
+    ]
+  }
+}

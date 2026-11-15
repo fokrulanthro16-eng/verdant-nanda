@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1-Line Agentify SDK & DOM Compiler | Project VerdantNANDA</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* SDK Specific Refinements */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    .sdk-form-control {
+      box-sizing: border-box !important;
+      width: 100% !important;
+      display: block !important;
+      padding: 11px 14px !important;
+      background: var(--void-inset, rgba(3, 10, 7, 0.85)) !important;
+      border: 1px solid rgba(52, 211, 153, 0.25) !important;
+      border-radius: 8px !important;
+      color: #fff !important;
+      font-size: 13px !important;
+      font-family: inherit !important;
+      transition: all 0.2s ease !important;
+    }
+    .sdk-form-control:focus {
+      border-color: #10b981 !important;
+      outline: none !important;
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.35) !important;
+    }
+    .sdk-form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Full-Viewport WebGL Three.js Spatial Background Canvas -->
+  <canvas id="spatial-canvas"></canvas>
+
+  <div class="spatial-cockpit">
+    <!-- Top Spatial Navigation Header -->
+    <header class="spatial-nav">
+      <div class="brand-badge">
+        <div class="brand-gem-3d" style="background: radial-gradient(circle at 30% 30%, #34d399 0%, #059669 70%, #022c22 100%);">🧩</div>
+        <div class="brand-meta">
+          <h1>1-Line Agentify SDK & DOM Compiler</h1>
+          <p>MIT NANDA INFRASTRUCTURE DELIVERABLE &bull; SPEC V0.2 PASS</p>
+        </div>
+      </div>
+      <div class="nav-telemetry-cluster">
+        <span class="telemetry-chip">⚡ DOM COMPILER ACTIVE</span>
+        <a href="http://127.0.0.1:8080/" data-hub-link class="spatial-dock-btn" style="text-decoration: none; padding: 7px 16px; font-size: 11px; font-weight: 700;">
+          ← Back to VerdantNANDA Hub
+        </a>
+      </div>
+    </header>
+
+    <!-- Intro Card -->
+    <div class="spatial-card" style="margin-bottom: 24px;">
+      <div class="card-content">
+        <div class="card-header-spatial">
+          <h2><span>⚡</span> Autonomous 1-Line Drop-in Compiler</h2>
+          <span class="telemetry-chip" style="font-size: 10px;">ZERO-CONFIG DOM PARSER</span>
+        </div>
+        <p style="color: #cbd5e1; font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
+          Turn any standard HTML page into a fully-compliant Worldwide Agentic Web Node with a single script tag. The SDK scans semantic <code>data-agent-*</code> HTML5 attributes, auto-synthesizes schema-validated <code>agent-manifest.json</code> and declarative <code>.network.json</code> specifications, and registers the node with the MIT NANDA decentralized registry.
+        </p>
+
+        <div style="background: var(--void-inset); border: 1px solid rgba(52,211,153,0.3); border-radius: 12px; padding: 16px; position: relative;">
+          <div style="font-size: 11px; text-transform: uppercase; color: #34d399; font-weight: 700; margin-bottom: 8px; font-family: var(--font-mono);">
+            // Drop this script tag into any existing HTML website:
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 13px; color: #a7f3d0; overflow-x: auto; white-space: nowrap;">
+            &lt;script src="./sdk/verdant-agentify.js" data-site-name="My Eco Lodge" data-network="my_lodge" data-nanda-register="true"&gt;&lt;/script&gt;
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Sample Webpage with data-agent attributes -->
+    <div class="spatial-card">
+      <div class="card-content">
+        <div class="card-header-spatial">
+          <h2><span>🏔️</span> Annotated Webpage Sandbox: "Alderwood Alpine Sanctuary"</h2>
+          <span class="telemetry-chip" style="font-size: 10px;">LIVE DOM EXTRACTION TARGET</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.35fr 1fr; gap: 24px; align-items: start;">
+          <!-- Left: Sample Booking Form with data-agent-action -->
+          <div style="background: var(--void-surface); border: 1px solid rgba(52,211,153,0.2); border-radius: 16px; padding: 22px;"
+               data-agent-action="reserve_alderwood_chalet"
+               data-agent-effect="irreversible"
+               data-agent-desc="Reserves an alpine chalet after date and guest validation.">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid rgba(52,211,153,0.15); padding-bottom: 12px;">
+              <h3 style="margin: 0; color: #34d399; font-size: 15px; font-weight: 700;">Alpine Chalet Booking Form</h3>
+              <span class="telemetry-chip" style="font-size: 9px;">action="reserve_alderwood_chalet"</span>
+            </div>
+
+            <form onsubmit="event.preventDefault(); alert('Sample chalet reservation action submitted!');">
+              <!-- Row 1: Check-in and Guests (Proper Box Sizing & No Overlap) -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                <div>
+                  <label class="sdk-form-label">Check-in Date</label>
+                  <input type="date" 
+                         class="sdk-form-control"
+                         data-agent-param="checkIn" 
+                         data-agent-desc="Target check-in date" 
+                         value="2026-11-20"
+                         required>
+                </div>
+                <div>
+                  <label class="sdk-form-label">Guests</label>
+                  <input type="number" 
+                         class="sdk-form-control"
+                         min="1" 
+                         max="6" 
+                         value="2" 
+                         data-agent-param="guests" 
+                         data-agent-desc="Total party guests" 
+                         required>
+                </div>
+              </div>
+
+              <!-- Row 2: Guest Name -->
+              <div style="margin-bottom: 18px;">
+                <label class="sdk-form-label">Primary Guest Full Name</label>
+                <input type="text" 
+                       class="sdk-form-control"
+                       placeholder="Elena Rostova" 
+                       value="Elena Rostova"
+                       data-agent-param="guestName" 
+                       data-agent-desc="Full primary guest name" 
+                       required>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(52,211,153,0.15); padding-top: 14px;">
+                <span style="font-family: var(--font-mono); font-size: 15px; font-weight: 800; color: #a7f3d0;">
+                  $210.00 <span style="font-size: 11px; color: #64748b; font-weight: 400;">/ night</span>
+                </span>
+                <button type="submit" class="spatial-dock-btn btn-pulse" style="padding: 10px 18px; font-size: 12px;">
+                  Confirm Chalet Hold
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right: State and Catalog Entities -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <!-- Live Availability State Card -->
+            <div style="background: var(--void-surface); border: 1px solid rgba(52,211,153,0.2); border-radius: 16px; padding: 18px;"
+                 data-agent-state="chalet_inventory"
+                 data-agent-desc="Live count of available chalets">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 11px; color: #6ee7b7; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">
+                  Live Availability
+                </span>
+                <span class="telemetry-chip" style="font-size: 9px;">state="chalet_inventory"</span>
+              </div>
+              <div style="font-size: 26px; font-weight: 800; color: #fff; margin: 8px 0 4px; font-family: var(--font-mono);">
+                3 Chalets Open
+              </div>
+              <div style="font-size: 12px; color: #94a3b8;">
+                Cedar Chalet #1, #2, and Obsidian Villa #4 available for immediate booking.
+              </div>
+            </div>
+
+            <!-- Add-on Entity Card -->
+            <div style="background: var(--void-surface); border: 1px solid rgba(6,182,212,0.25); border-radius: 16px; padding: 18px;"
+                 data-agent-entity="alderwood_sauna"
+                 data-agent-price="45">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 11px; color: #67e8f9; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">
+                  Optional Add-on Entity
+                </span>
+                <span class="telemetry-chip" style="font-size: 9px; border-color: rgba(6,182,212,0.35); color: #67e8f9;">entity="alderwood_sauna"</span>
+              </div>
+              <div data-agent-title style="font-size: 16px; font-weight: 700; color: #fff; margin: 8px 0 4px;">
+                Wood-Fired Barrel Sauna Experience
+              </div>
+              <div style="font-size: 13px; color: #34d399; font-weight: 700; font-family: var(--font-mono);">
+                +$45.00 <span style="font-size: 11px; color: #64748b; font-weight: 400;">/ 2-hour private session</span>
+              </div>
+            </div>
+
+            <!-- Inspect Synthesized Output Pill -->
+            <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(52,211,153,0.3); border-radius: 14px; padding: 14px; display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <div style="font-size: 12px; font-weight: 700; color: #a7f3d0;">Auto-Generated Artifacts Ready</div>
+                <div style="font-size: 11px; color: #6ee7b7;">Manifest, HOCON network & NANDA index parsed.</div>
+              </div>
+              <button id="open-studio-btn" onclick="document.querySelector('#verdant-sdk-pill')?.click();" class="spatial-dock-btn" style="padding: 6px 12px; font-size: 11px;">
+                Open Studio ➔
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic Origin Resolution for Hub Link -->
+  <script>
+    const isSingleDomain = (window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") || window.location.port === "8080" || !window.location.port;
+    document.querySelectorAll("[data-hub-link]").forEach(el => {
+      if (isSingleDomain) el.href = "/";
+    });
+  </script>
+
+  <!-- 1-Line Drop-in SDK Script -->
+  <script src="./verdant-agentify.js" data-site-name="Alderwood Alpine Sanctuary" data-network="alderwood_chalets" data-nanda-register="true"></script>
+
+  <!-- 3D Spatial Constellation Script -->
+  <script type="module" src="/js/spatial-3d.js"></script>
+</body>
+</html>
